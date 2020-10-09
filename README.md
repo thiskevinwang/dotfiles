@@ -14,3 +14,10 @@ Copy everything into **this** project directory
 cp -a ~/.config/fish/completions/ ./.config/fish/completions
 cp -a ~/.config/fish/functions/ ./.config/fish/functions
 ```
+
+Copying from project to local
+
+```sh
+cp -a ./.config/fish/completions ~/.config/fish/completions/
+cp -a ./.config/fish/functions ~/.config/fish/functions/ 
+```
