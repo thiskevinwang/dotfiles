@@ -77,8 +77,8 @@ source $ZSH/oh-my-zsh.sh
 # Kubectl
 # https://kubernetes.io/docs/tasks/tools/install-kubectl/#optional-kubectl-configurations
 source <(kubectl completion zsh)
-echo 'alias k=kubectl' >>~/.zshrc
-echo 'complete -F __start_kubectl k' >>~/.zshrc
+alias k=kubectl
+complete -F __start_kubectl k
 
 # User configuration
 
@@ -112,7 +112,3 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
-alias k=kubectl
-complete -F __start_kubectl k
