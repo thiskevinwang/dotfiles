@@ -68,7 +68,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-completions docker docker-compose)
+plugins=(aws fzf git zsh-completions docker docker-compose)
 
 autoload -U compinit && compinit
 
@@ -112,3 +112,12 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# AWS
+source /usr/local/aws/bin/aws_zsh_completer.sh
+
+# Sounds...
+# # Turn off all beeps
+# unsetopt BEEP
+# Turn off autocomplete beeps
+unsetopt LIST_BEEP
