@@ -1,35 +1,72 @@
 # dotfiles
 
-Everything should go in `~/`
-
 # Dependencies
+
+## FiraCode Font
+
+https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+
+## oh-my-zsh
+
+```sh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+## Starship
+
+```sh
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+# or
+brew install starship
+```
+
+## Homebrew
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+## Github CLI
+
+```sh
+brew install gh
+```
 
 ## `code` CLI
 
 Installing `code` CLI
 - In VSCode, <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>p</kbd>, search: "install code"
 
+## zsh completions
+
+```sh
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+```
+
+## autojump
+
+```sh
+brew install autojump
+```
+
+## znap
+
+```sh
+git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git
+source zsh-snap/install.zsh
+```
+
+## autocomplete
+
+```sh
+znap source marlonrichert/zsh-autocomplete
+```
+
 ## Commands
 
 ```sh
 git config --global user.name "Kevin Wang"
 git config --global user.email "FIXME"
-```
-
-## notes
-
-Copy everything into **this** project directory
-
-```sh
-cp -a ~/.config/fish/completions/ ./.config/fish/completions
-cp -a ~/.config/fish/functions/ ./.config/fish/functions
-```
-
-Copying from project to local
-
-```sh
-cp -a ./.config/fish/completions ~/.config/fish/completions/
-cp -a ./.config/fish/functions ~/.config/fish/functions/ 
 ```
 
 # Misc
