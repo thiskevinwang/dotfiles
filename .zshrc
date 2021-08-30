@@ -121,3 +121,56 @@ source /usr/local/aws/bin/aws_zsh_completer.sh
 # unsetopt BEEP
 # Turn off autocomplete beeps
 unsetopt LIST_BEEP
+
+function jwt-decode () {
+  echo -n "header "
+  echo $1 | awk -F . '{ print $1 "===" }' | python -m base64 -d | python -m json.tool
+  echo ""
+  echo -n "payload "
+  echo $1 | awk -F . '{ print $2 "===" }' | python -m base64 -d | python -m json.tool
+}
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# NVM 
+# https://stackoverflow.com/a/39519460/9823455
+autoload -U add-zsh-hook
+load-nvmrc() {
+  [[ -a .nvmrc ]] || return
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"
+
+# The next line updates PATH for Netlify's Git Credential Helper.
+if [ -f '/Users/kevin/.netlify/helper/path.zsh.inc' ]; then source '/Users/kevin/.netlify/helper/path.zsh.inc'; fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
+
+
+# Python
+alias python=/usr/local/bin/python3
+
+# Android
+export ANDROID_SDK=/Users/kevin/Library/Android/sdk
