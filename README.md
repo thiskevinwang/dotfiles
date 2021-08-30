@@ -1,24 +1,12 @@
 # dotfiles
 
-# Dependencies
+Some commands to help get a new workstation set up, and some config files to copy into `~/`.
 
 ## FiraCode Font
 
+Also see: [nerdfonts](https://www.nerdfonts.com/)
+
 https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
-
-## oh-my-zsh
-
-```sh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-## Starship
-
-```sh
-sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-# or
-brew install starship
-```
 
 ## Homebrew
 
@@ -32,35 +20,63 @@ brew install starship
 brew install gh
 ```
 
-## `code` CLI
+## oh-my-zsh
 
-Installing `code` CLI
-- In VSCode, <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>p</kbd>, search: "install code"
+```sh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
 
-## zsh completions
+### starship 
+
+```sh
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+# or
+brew install starship
+```
+
+`~/.zshrc`
+
+```
+eval "$(starship init zsh)"
+```
+
+## zsh things
+
+zsh completions
 
 ```sh
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 ```
 
-## autojump
+[fzf](https://github.com/junegunn/fzf)
+
+```sh
+brew install fzf
+```
+
+autojump
 
 ```sh
 brew install autojump
 ```
 
-## znap
+znap
 
 ```sh
 git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git
 source zsh-snap/install.zsh
 ```
 
-## autocomplete
+autocomplete
 
 ```sh
 znap source marlonrichert/zsh-autocomplete
 ```
+
+## `code` CLI
+
+Installing `code` CLI
+- In VSCode, <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>p</kbd>, search: "install code"
 
 ## Commands
 
