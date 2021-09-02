@@ -90,3 +90,6 @@ git config --global user.email "FIXME"
 Caps Lock <kbd>⇪</kbd> ➜ Control <kbd>⌃</kbd>
 - ![image](https://user-images.githubusercontent.com/26389321/131413420-45915f24-b0d9-4107-9205-2a2bc9e795d8.png)
 
+Option <kbd>⌥</kbd> + <kbd>Delete</kbd> should delete words in terminal
+- Option == Opt/Alt on HHKB
+- ![image](https://user-images.githubusercontent.com/26389321/131890471-e80c74f4-2876-4390-bd80-1209618a0619.png)
