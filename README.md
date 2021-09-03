@@ -73,10 +73,28 @@ autocomplete
 znap source marlonrichert/zsh-autocomplete
 ```
 
-## `code` CLI
+## VSCode
+
+### `code` CLI
 
 Installing `code` CLI
 - In VSCode, <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>p</kbd>, search: "install code"
+
+### Integrated Terminal
+
+Allowing <kbd>⌘</kbd> + <kbd>K</kbd> to clear the integrated terminal
+
+- In VSCode, <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>p</kbd>, search: ">Open Keyboard Shortcuts (JSON)"
+  ```json
+  // Place your key bindings in this file to override the defaults
+  [
+    {
+      "key": "cmd+k",
+      "command": "workbench.action.terminal.clear",
+      "when": "terminalFocus && terminalProcessSupported"
+    }
+  ]
+  ```
 
 ## Commands
 
