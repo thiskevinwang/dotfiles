@@ -102,6 +102,7 @@ Allowing <kbd>⌘</kbd> + <kbd>K</kbd> to clear the integrated terminal
 git config --global user.name "Kevin Wang"
 git config --global user.email "FIXME"
 git config --global pager.branch false
+git config --global pager.log false 
 ```
 
 ### Notes
