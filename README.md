@@ -101,7 +101,12 @@ Allowing <kbd>⌘</kbd> + <kbd>K</kbd> to clear the integrated terminal
 ```sh
 git config --global user.name "Kevin Wang"
 git config --global user.email "FIXME"
+git config --global pager.branch false
 ```
+
+### Notes
+
+- [git branch](https://stackoverflow.com/a/48370253) should print
 
 # Misc
 
