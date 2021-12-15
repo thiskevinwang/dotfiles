@@ -1,12 +1,10 @@
 # dotfiles
 
-Some commands to help get a new workstation set up, and some config files to copy into `~/`.
+## oh-my-zsh
 
-## FiraCode Font
-
-Also see: [nerdfonts](https://www.nerdfonts.com/)
-
-https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+```sh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
 
 ## Homebrew
 
@@ -14,64 +12,28 @@ https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-## Github CLI
+## `sh install.sh`
 
-```sh
-brew install gh
-```
+- This links config files to their respect dotfile locations
+- <details>
+    <summary><i>Example output</i></summary>
 
-## oh-my-zsh
+    ```console
+    Linked Brewfile to /Users/kevin/.Brewfile.
+    Linked gitconfig to /Users/kevin/.gitconfig.
+    Linked vimrc to /Users/kevin/.vimrc.
+    Linked zshrc to /Users/kevin/.zshrc.
+    ```
 
-```sh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
+  </details>
 
-### starship 
+## `brew bundle`
 
-```sh
-sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-# or
-brew install starship
-```
+- Installs everything in [Brewfile](./Brewfile)
+  - binaries like `node`, `go`, `gh`, etc.
+  - mac apps
+  - 
 
-`~/.zshrc`
-
-```
-eval "$(starship init zsh)"
-```
-
-## zsh things
-
-zsh completions
-
-```sh
-git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
-```
-
-[fzf](https://github.com/junegunn/fzf)
-
-```sh
-brew install fzf
-```
-
-autojump
-
-```sh
-brew install autojump
-```
-
-znap
-
-```sh
-git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git
-source zsh-snap/install.zsh
-```
-
-autocomplete
-
-```sh
-znap source marlonrichert/zsh-autocomplete
-```
 
 ## VSCode
 
@@ -95,19 +57,6 @@ Allowing <kbd>⌘</kbd> + <kbd>K</kbd> to clear the integrated terminal
     }
   ]
   ```
-
-## Commands
-
-```sh
-git config --global user.name "Kevin Wang"
-git config --global user.email "FIXME"
-git config --global pager.branch false
-git config --global pager.log false 
-```
-
-### Notes
-
-- [git branch](https://stackoverflow.com/a/48370253) should print
 
 # Misc
 
