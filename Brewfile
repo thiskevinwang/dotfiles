@@ -5,6 +5,7 @@ tap "homebrew/core"
 
 # Binaries
 brew "autojump"
+brew "awscli"
 brew "mas" # Mac App Store CLI
 brew "fzf"
 brew "gh" # GitHub CLI
