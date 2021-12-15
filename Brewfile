@@ -6,12 +6,18 @@ tap "homebrew/core"
 # Binaries
 brew "autojump"
 brew "awscli"
+brew "bat" # better cat
 brew "mas" # Mac App Store CLI
+brew "fnm" # Node version manager
 brew "fzf"
 brew "gh" # GitHub CLI
 brew "gnupg"
+brew "go"
 brew "kubectl"
-brew "neovim"
+brew "neovim" # 'nvim'
+brew "node"
+brew "ripgrep" # 'rg' better grep
+brew "rust"
 
 # Apps
 cask "1password"
