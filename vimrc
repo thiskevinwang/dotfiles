@@ -33,3 +33,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
     \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+" No Arrows, only rectangles — https://github.com/vim-airline/vim-airline/issues/1688
+let g:airline_powerline_fonts = 1
