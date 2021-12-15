@@ -19,6 +19,7 @@ brew "node"
 brew "ripgrep" # 'rg' better grep
 brew "rust"
 brew "starship"
+brew "watchman"
 
 # Apps
 cask "1password"
