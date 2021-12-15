@@ -16,7 +16,7 @@
 [user]
 	name = Kevin Wang
 	email = kwangsan@gmail.com
-	signingkey = ed25519/F60602D6D70D45D2
+	signingkey = 9E3A227DFAE539A7
 
 [branch]
 	autosetuprebase = always
