@@ -18,6 +18,7 @@ brew "neovim" # 'nvim'
 brew "node"
 brew "ripgrep" # 'rg' better grep
 brew "rust"
+brew "starship"
 
 # Apps
 cask "1password"
