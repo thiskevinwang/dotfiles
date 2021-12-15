@@ -1,5 +1,12 @@
 # dotfiles
 
+## Install powerline fonts
+
+https://github.com/powerline/fonts
+
+
+
+
 ## oh-my-zsh
 
 ```sh
@@ -30,9 +37,9 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 ## `brew bundle`
 
 - Installs everything in [Brewfile](./Brewfile)
-  - binaries like `node`, `go`, `gh`, etc.
-  - mac apps
-  - 
+  - binaries (like `node`, `go`, `gh`, etc.)
+  - mac apps (like `notion` and `slack`)
+  - mac store apps (like `Final Cut Pro` and `Xcode`)
 
 
 ## VSCode
