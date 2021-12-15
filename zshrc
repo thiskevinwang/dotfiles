@@ -22,6 +22,7 @@ plugins=(
   zsh-completions
   docker
   docker-compose
+  zsh-autosuggestions
 )
 
 autoload -U compinit && compinit
@@ -37,13 +38,9 @@ complete -F __start_kubectl k
 
 # Starship Prompt
 eval "$(starship init zsh)"
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# AWS
-source /usr/local/aws/bin/aws_zsh_completer.sh
 
 # Sounds...
 # # Turn off all beeps
