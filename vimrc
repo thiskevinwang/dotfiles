@@ -26,7 +26,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'scrooloose/nerdtree'
 Plug 'myusuf3/numbers.vim'
-Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " Start NERDTree when Vim starts with a directory argument.
