@@ -1,0 +1,27 @@
+[alias]
+  prettylog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+[color]
+  ui = true
+
+[difftool]
+	prompt = false
+
+[github]
+	user = thiskevinwang
+
+[push]
+	default = tracking
+
+[user]
+	name = Kevin Wang
+	email = kwangsan@gmail.com
+	signingkey = ed25519/F60602D6D70D45D2
+
+[branch]
+	autosetuprebase = always
+
+[commit]
+	gpgsign = true
+[pager]
+	branch = false
