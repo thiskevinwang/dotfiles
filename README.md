@@ -42,6 +42,12 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 Installing `code` CLI
 - In VSCode, <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>p</kbd>, search: "install code"
 
+### Install extensions
+
+```sh
+sh ./.vscode/install-extensions.sh
+```
+
 ### Integrated Terminal
 
 Allowing <kbd>⌘</kbd> + <kbd>K</kbd> to clear the integrated terminal
