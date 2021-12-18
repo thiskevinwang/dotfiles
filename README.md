@@ -1,5 +1,12 @@
 # dotfiles
 
+## Quickstart
+
+```bash
+git clone https://github.com/thiskevinwang/dotfiles.git
+sh dotfiles/install.sh
+```
+
 ## `sh install.sh`
 
 This is the sauce...
