@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
 SOURCE="${BASH_SOURCE}"
-echo $SOURCE
-
 BASEDIR=$(dirname $0)
-echo $BASEDIR
 
 while read p; do
-  echo "⏳ Installing: $p ..."
-  code --install-extension $p
+  code --install-extension $p >/dev/null 2>/dev/null
+  if [[ $? != 0 ]] ; then
+    echo "💥 $p"
+  else 
+    echo "✔ $p"
+  fi
   wait
-  echo "✅ Installed: $p"
-  echo ""
 done < $BASEDIR/extensions.txt

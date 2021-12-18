@@ -114,9 +114,9 @@ echo ""
 # Brew
 printf "💭 Run 'brew bundle'? "
 read -r -p "[y/N] " response
-case $yn in
+case $response in
     [yY][eE][sS]|[yY])
-    brew bundle
+    brew bundle | sed 's/^/\t/'
     break;;
     *) echo "\tSkipping..."; 
     break;;
@@ -133,9 +133,9 @@ if [[ $? != 0 ]] ; then
     echo "\n\tskipping for now..."
 else
     read -r -p "[y/N] " response
-    case $yn in
+    case $response in
         [yY][eE][sS]|[yY])
-        sh ./.vscode/install-extensions.sh
+        sh ./.vscode/install-extensions.sh | sed 's/^/\t/'
         break;;
         *) echo "\tSkipping..."; 
         break;;
