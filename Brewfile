@@ -6,6 +6,7 @@ tap "homebrew/core"
 # Binaries
 brew "autojump"
 brew "awscli"
+brew "aws-cdk"
 brew "bat" # better cat
 brew "mas" # Mac App Store CLI
 brew "fnm" # Node version manager

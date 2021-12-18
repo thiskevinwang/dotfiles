@@ -38,6 +38,8 @@ source <(kubectl completion zsh)
 alias k=kubectl
 complete -F __start_kubectl k
 
+
+
 # Starship Prompt
 eval "$(starship init zsh)"
 
@@ -60,6 +62,9 @@ if [ -f '/Users/kevin/.netlify/helper/path.zsh.inc' ]; then source '/Users/kevin
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
 
+# fnm
+source <(fnm completions --shell zsh)
+eval "$(fnm env)"
 
 # Python
 alias python=/usr/local/bin/python3
