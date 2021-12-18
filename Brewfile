@@ -21,6 +21,7 @@ brew "ripgrep" # 'rg' better grep
 brew "rust"
 brew "starship"
 brew "watchman"
+brew "yarn"
 
 # Apps
 cask "1password"
