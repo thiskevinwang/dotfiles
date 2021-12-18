@@ -3,6 +3,13 @@
 # This installation is destructive, as it removes exisitng files/directories.
 # Use at your own risk.
 
+# Install Powerline fonts
+git clone https://github.com/powerline/fonts.git --depth=1
+pushd fonts
+./install.sh
+popd
+rm -rf fonts
+
 # Install Oh My Zsh
 ZSH_CUSTOM_DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom/}/plugins/zsh-autosuggestions
 ZSH_AUTOSUGGESTIONS=https://github.com/zsh-users/zsh-autosuggestions
