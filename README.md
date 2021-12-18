@@ -1,5 +1,7 @@
 # dotfiles
 
+This is me managing my Dotfiles, Brew Binaries, Mac Apps, VSCode extensions
+
 ## Quickstart
 
 ```bash
