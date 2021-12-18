@@ -81,3 +81,32 @@ if [ ! -d ".vim/bundle" ]; then
     TERM=dumb vim +PlugInstall +qall >vim.log 2>&1
 fi
 popd >/dev/null
+echo ""
+
+
+# VScode extentions
+echo "Do you want to install VSCode extentions now?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) echo "\tOk...";
+        sh ./.vscode/install-extensions.sh
+        break;;
+        No ) echo "\tSkipping..."; 
+        break;;
+    esac
+done
+echo ""
+
+# Brew
+echo "Do you want to run 'brew bundle' now?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) echo "\tOk...";
+        brew bundle
+        break;;
+        No ) echo "\tSkipping..."; 
+        break;;
+    esac
+done
+echo ""
+
