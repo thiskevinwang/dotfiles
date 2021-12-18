@@ -14,7 +14,6 @@ export GPG_TTY=$(tty)
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/kevin/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
 
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
@@ -28,6 +27,10 @@ plugins=(
 )
 
 autoload -U compinit && compinit
+
+# Note this needs to come after plugins=(...)
+# in order for plugins to load.
+source $ZSH/oh-my-zsh.sh
 
 # Kubectl
 # https://kubernetes.io/docs/tasks/tools/install-kubectl/#optional-kubectl-configurations
