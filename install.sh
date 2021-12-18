@@ -2,25 +2,42 @@
 #
 # This installation is destructive, as it removes exisitng files/directories.
 # Use at your own risk.
+#
+# This script builds on top of https://github.com/mitchellh/dotfiles
+
+echo ""
+
+# Install Homebrew
+echo "🍻 Homebrew"
+which -s brew
+if [[ $? != 0 ]] ; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    echo "\tbrew is installed"
+fi
+echo ""
 
 # Install Powerline fonts
-git clone https://github.com/powerline/fonts.git --depth=1
-pushd fonts
-./install.sh
-popd
+echo "⚡️ Powerline fonts"
+git clone https://github.com/powerline/fonts.git --depth=1 --quiet
+pushd fonts >/dev/null
+./install.sh | sed 's/^/\t/'
+popd >/dev/null
 rm -rf fonts
+echo ""
 
 # Install Oh My Zsh
+echo "😮 Oh My Zsh"
 ZSH_CUSTOM_DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom/}/plugins/zsh-autosuggestions
 ZSH_AUTOSUGGESTIONS=https://github.com/zsh-users/zsh-autosuggestions
-
 if [[ -d $ZSH_CUSTOM_DIR ]]
 then
-  echo "Looks like Oh My Zsh is already installed"
+  echo "\tLooks like Oh My Zsh is already installed"
 else
-  echo "Cloning $ZSH_AUTOSUGGESTIONS"
+  echo "\tCloning $ZSH_AUTOSUGGESTIONS"
   git clone $ZSH_AUTOSUGGESTIONS $ZSH_CUSTOM_DIR
 fi
+echo ""
 
 # Get path to the current script
 SCRIPT_NAME="$(basename ${BASH_SOURCE[0]})"
@@ -39,7 +56,9 @@ contains() {
   return 1
 }
 
+
 # copy or symlink all the dotfiles
+echo "🔗 Copying/Symlinking dotfiles"
 UNAME=$(uname | tr '[:upper:]' '[:lower:]')
 for path in $SCRIPT_DIR/*; do
   name=$(basename $path)
@@ -70,14 +89,15 @@ for path in $SCRIPT_DIR/*; do
   case $UNAME in
     cygwin* | mingw32*)
       cp -R $path "$target"
-      echo "Copied $name to $target."
+      echo "\t· Copied $name to $target."
       ;;
     *)
       ln -s $path "$target"
-      echo "Linked $name to $target."
+      echo "\t· Linked $name to $target."
       ;;
   esac
 done
+echo ""
 
 # setup the vim directory
 pushd $HOME >/dev/null
@@ -91,29 +111,34 @@ popd >/dev/null
 echo ""
 
 
+# Brew
+printf "💭 Run 'brew bundle'? "
+read -r -p "[y/N] " response
+case $yn in
+    [yY][eE][sS]|[yY])
+    brew bundle
+    break;;
+    *) echo "\tSkipping..."; 
+    break;;
+esac
+echo ""
+
+
 # VScode extentions
-echo "Do you want to install VSCode extentions now?"
-select yn in "Yes" "No"; do
+# Check for code CLI
+printf "💭 Install VSCode extentions now? "
+which -s code
+if [[ $? != 0 ]] ; then
+    echo "\n\tcode cli is not installed";
+    echo "\n\tskipping for now..."
+else
+    read -r -p "[y/N] " response
     case $yn in
-        Yes ) echo "\tOk...";
+        [yY][eE][sS]|[yY])
         sh ./.vscode/install-extensions.sh
         break;;
-        No ) echo "\tSkipping..."; 
+        *) echo "\tSkipping..."; 
         break;;
     esac
-done
+fi
 echo ""
-
-# Brew
-echo "Do you want to run 'brew bundle' now?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) echo "\tOk...";
-        brew bundle
-        break;;
-        No ) echo "\tSkipping..."; 
-        break;;
-    esac
-done
-echo ""
-

@@ -1,81 +1,75 @@
 # dotfiles
 
-## Install powerline fonts
-
-https://github.com/powerline/fonts
-
-
-
-
-## oh-my-zsh
-
-```sh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-## Homebrew
-
-```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
 ## `sh install.sh`
 
-- This links config files to their respect dotfile locations
-- <details>
-    <summary><i>Example output</i></summary>
+This is the sauce...
+
+- <details open>
+    <summary><i>Output</i></summary>
 
     ```console
-    Linked Brewfile to /Users/kevin/.Brewfile.
-    Linked gitconfig to /Users/kevin/.gitconfig.
-    Linked vimrc to /Users/kevin/.vimrc.
-    Linked zshrc to /Users/kevin/.zshrc.
+    🍻 Homebrew
+            brew is installed
+
+    ⚡️ Powerline fonts
+            Copying fonts...
+            Powerline fonts installed to /Users/kevin/Library/Fonts
+
+    😮 Oh My Zsh
+            Looks like Oh My Zsh is already installed
+
+    🔗 Copying/Symlinking dotfiles
+            · Linked Brewfile to /Users/kevin/.Brewfile.
+            · Linked Brewfile.lock.json to /Users/kevin/.Brewfile.lock.json.
+            · Linked gitconfig to /Users/kevin/.gitconfig.
+            · Linked vimrc to /Users/kevin/.vimrc.
+            · Linked zshrc to /Users/kevin/.zshrc.
+
+
+    💭 Run 'brew bundle'? [y/N] 
+            Skipping...
+
+    💭 Install VSCode extentions now? [y/N] 
+            Skipping...
     ```
 
   </details>
 
-## `brew bundle`
-
-- Installs everything in [Brewfile](./Brewfile)
-  - binaries (like `node`, `go`, `gh`, etc.)
-  - mac apps (like `notion` and `slack`)
-  - mac store apps (like `Final Cut Pro` and `Xcode`)
-
 
 ## VSCode
+
+**TODOS**
+- [ ] Programmatically install `code` CLI
+- [ ] Sync `~/.vscode/extentions`
 
 ### `code` CLI
 
 Installing `code` CLI
 - In VSCode, <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>p</kbd>, search: "install code"
 
-### Install extensions
+### Allowing <kbd>⌘</kbd> + <kbd>K</kbd> to clear the integrated terminal
 
-```sh
-sh ./.vscode/install-extensions.sh
+In VSCode
+- <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>p</kbd>
+- search: ">Open Keyboard Shortcuts (JSON)"
+
+```json
+[
+  {
+    "key": "cmd+k",
+    "command": "workbench.action.terminal.clear",
+    "when": "terminalFocus && terminalProcessSupported"
+  }
+]
 ```
 
-### Integrated Terminal
+# Misc Machine Setup
 
-Allowing <kbd>⌘</kbd> + <kbd>K</kbd> to clear the integrated terminal
+## Map `Caps Lock` (<kbd>⇪</kbd>) to `Control` (<kbd>⌃</kbd>)
 
-- In VSCode, <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>p</kbd>, search: ">Open Keyboard Shortcuts (JSON)"
-  ```json
-  // Place your key bindings in this file to override the defaults
-  [
-    {
-      "key": "cmd+k",
-      "command": "workbench.action.terminal.clear",
-      "when": "terminalFocus && terminalProcessSupported"
-    }
-  ]
-  ```
+![image](https://user-images.githubusercontent.com/26389321/131413420-45915f24-b0d9-4107-9205-2a2bc9e795d8.png)
 
-# Misc
+## Option <kbd>⌥</kbd> + <kbd>Delete</kbd> should delete words in terminal
 
-Caps Lock <kbd>⇪</kbd> ➜ Control <kbd>⌃</kbd>
-- ![image](https://user-images.githubusercontent.com/26389321/131413420-45915f24-b0d9-4107-9205-2a2bc9e795d8.png)
-
-Option <kbd>⌥</kbd> + <kbd>Delete</kbd> should delete words in terminal
-- Option == Opt/Alt on HHKB
-- ![image](https://user-images.githubusercontent.com/26389321/131890471-e80c74f4-2876-4390-bd80-1209618a0619.png)
+Option == Opt/Alt on HHKB
+![image](https://user-images.githubusercontent.com/26389321/131890471-e80c74f4-2876-4390-bd80-1209618a0619.png)
