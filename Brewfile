@@ -20,6 +20,7 @@ brew "node"
 brew "ripgrep" # 'rg' better grep
 brew "rust"
 brew "starship"
+brew "vercel-cli"
 brew "watchman"
 brew "yarn"
 
