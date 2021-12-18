@@ -4,7 +4,8 @@
 
 ```bash
 git clone https://github.com/thiskevinwang/dotfiles.git
-sh dotfiles/install.sh
+cd dotfiles
+sh install.sh
 ```
 
 ## `sh install.sh`
