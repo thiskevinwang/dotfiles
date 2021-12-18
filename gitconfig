@@ -25,4 +25,5 @@
 	gpgsign = true
 [pager]
 	branch = false
-        diff = false
+	diff = false
+	log = false

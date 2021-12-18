@@ -17,15 +17,6 @@ else
 fi
 echo ""
 
-# Install Powerline fonts
-echo "⚡️ Powerline fonts"
-git clone https://github.com/powerline/fonts.git --depth=1 --quiet
-pushd fonts >/dev/null
-./install.sh | sed 's/^/\t/'
-popd >/dev/null
-rm -rf fonts
-echo ""
-
 # Install Oh My Zsh
 echo "😮 Oh My Zsh"
 ZSH_CUSTOM_DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom/}/plugins/zsh-autosuggestions
@@ -102,43 +93,73 @@ echo ""
 # setup the vim directory
 pushd $HOME >/dev/null
 if [ ! -d ".vim/bundle" ]; then
-    echo "Installing Vim plugins"
-    mkdir -p .vim .vim/bundle .vim/backup .vim/swap .vim/cache .vim/undo
-    curl -fLo .vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    TERM=dumb vim +PlugInstall +qall >vim.log 2>&1
+  echo "Installing Vim plugins"
+  mkdir -p .vim .vim/bundle .vim/backup .vim/swap .vim/cache .vim/undo
+  curl -fLo .vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  TERM=dumb vim +PlugInstall +qall >vim.log 2>&1
 fi
 popd >/dev/null
 echo ""
 
+##################
+# Optional stuff #
+##################
+
+powerline_fonts() {
+  # Install Powerline fonts
+  printf "⚡️ Install Powerline fonts? "
+  read -r -p "[y/N] " response
+  case $response in
+    [yY][eE][sS]|[yY])
+    git clone https://github.com/powerline/fonts.git --depth=1 --quiet
+    pushd fonts >/dev/null
+    ./install.sh | sed 's/^/\t/'
+    popd >/dev/null
+    rm -rf fonts
+    break;;
+    *) echo "\tSkipping..."; 
+    break;;
+  esac
+  echo ""
+}
+
+
 
 # Brew
-printf "💭 Run 'brew bundle'? "
-read -r -p "[y/N] " response
-case $response in
+brew_bundle() {
+  printf "💭 Run 'brew bundle'? "
+  read -r -p "[y/N] " response
+  case $response in
     [yY][eE][sS]|[yY])
     brew bundle | sed 's/^/\t/'
     break;;
     *) echo "\tSkipping..."; 
     break;;
-esac
-echo ""
+  esac
+  echo ""
+}
 
-
-# VScode extentions
-# Check for code CLI
-printf "💭 Install VSCode extentions now? "
-which -s code
-if [[ $? != 0 ]] ; then
+vscode_extensions() {
+  # VScode extentions
+  # Check for code CLI
+  printf "💭 Install VSCode extentions now? "
+  which -s code
+  if [[ $? != 0 ]] ; then
     echo "\n\tcode cli is not installed";
     echo "\n\tskipping for now..."
-else
+  else
     read -r -p "[y/N] " response
     case $response in
-        [yY][eE][sS]|[yY])
-        sh ./.vscode/install-extensions.sh | sed 's/^/\t/'
-        break;;
-        *) echo "\tSkipping..."; 
-        break;;
+      [yY][eE][sS]|[yY])
+      sh ./.vscode/install-extensions.sh | sed 's/^/\t/'
+      break;;
+      *) echo "\tSkipping..."; 
+      break;;
     esac
-fi
-echo ""
+  fi
+  echo ""
+}
+
+powerline_fonts
+brew_bundle
+vscode_extensions
