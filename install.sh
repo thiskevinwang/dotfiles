@@ -163,3 +163,22 @@ vscode_extensions() {
 powerline_fonts
 brew_bundle
 vscode_extensions
+
+# gpg (depends on gnupg being installed)
+echo "🔑 GPG"
+
+git config --global gpg.program $(which gpg)
+
+if [[ ! -e ~/.gnupg/gpg-agent.conf ]]; then
+  touch ~/.gnupg/gpg-agent.conf
+  echo "default-cache-ttl 46000" >> ~/.gnupg/gpg-agent.conf
+  echo "max-cache-ttl 46000" >> ~/.gnupg/gpg-agent.conf
+  echo "pinentry-program $(which pinentry-mac)" >> ~/.gnupg/gpg-agent.conf
+fi
+
+printf "\t"; gpg-agent;
+if [[ $? != 0 ]] ; then
+  echo "\t♻️ starting new gpg-agent"
+  gpg-agent --daemon
+  wait
+fi
