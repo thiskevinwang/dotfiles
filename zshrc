@@ -1,5 +1,6 @@
 # Ensure brew can be found
-eval $(/opt/homebrew/bin/brew shellenv)
+# Issue seen on m1 max mbp
+[[ -f /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
 
 # Setup TTY for GPG
 export GPG_TTY=$(tty)
@@ -13,6 +14,7 @@ export GPG_TTY=$(tty)
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/kevin/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
 
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
@@ -27,14 +29,11 @@ plugins=(
 
 autoload -U compinit && compinit
 
-source $ZSH/oh-my-zsh.sh
-
 # Kubectl
 # https://kubernetes.io/docs/tasks/tools/install-kubectl/#optional-kubectl-configurations
 source <(kubectl completion zsh)
 alias k=kubectl
 complete -F __start_kubectl k
-
 
 # Starship Prompt
 eval "$(starship init zsh)"
