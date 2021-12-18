@@ -17,6 +17,7 @@ brew "go"
 brew "kubectl"
 brew "neovim" # 'nvim'
 brew "node"
+brew "pinentry-mac"
 brew "ripgrep" # 'rg' better grep
 brew "rust"
 brew "starship"
