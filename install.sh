@@ -3,6 +3,18 @@
 # This installation is destructive, as it removes exisitng files/directories.
 # Use at your own risk.
 
+# Install Oh My Zsh
+ZSH_CUSTOM_DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom/}/plugins/zsh-autosuggestions
+ZSH_AUTOSUGGESTIONS=https://github.com/zsh-users/zsh-autosuggestions
+
+if [[ -d $ZSH_CUSTOM_DIR ]]
+then
+  echo "Looks like Oh My Zsh is already installed"
+else
+  echo "Cloning $ZSH_AUTOSUGGESTIONS"
+  git clone $ZSH_AUTOSUGGESTIONS $ZSH_CUSTOM_DIR
+fi
+
 # Get path to the current script
 SCRIPT_NAME="$(basename ${BASH_SOURCE[0]})"
 pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
