@@ -60,7 +60,7 @@ SCRIPT_DIR=$(pwd)
 popd > /dev/null
 
 # names in this list won't be dot-prefixed
-skip_dot_prefix=(nvim)
+skip_dot_prefix=(nvim, starship.toml)
 
 # contains checks if an array ($2) contains a given element ($1).
 contains() {

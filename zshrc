@@ -41,6 +41,7 @@ complete -F __start_kubectl k
 
 
 # Starship Prompt
+export STARSHIP_CONFIG=~/starship.toml
 eval "$(starship init zsh)"
 
 # FZF

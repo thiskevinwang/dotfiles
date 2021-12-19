@@ -2,6 +2,7 @@ amazonwebservices.aws-toolkit-vscode
 apollographql.vscode-apollo
 bradlc.vscode-tailwindcss
 bradymholt.pgformatter
+bungcip.better-toml
 ckolkman.vscode-postgres
 clinyong.vscode-css-modules
 codezombiech.gitignore
