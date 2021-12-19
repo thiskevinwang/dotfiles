@@ -14,12 +14,12 @@ brew "fzf"
 brew "gh" # GitHub CLI
 brew "gnupg"
 brew "go"
+brew "goreleaser"
 brew "kubectl"
 brew "neovim" # 'nvim'
 brew "node"
 brew "pinentry-mac"
 brew "ripgrep" # 'rg' better grep
-brew "rust"
 brew "starship"
 brew "vercel-cli"
 brew "watchman"
