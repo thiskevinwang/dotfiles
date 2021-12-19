@@ -37,3 +37,4 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 let g:airline#extensions#tabline#enabled = 1
 " No Arrows, only rectangles — https://github.com/vim-airline/vim-airline/issues/1688
 let g:airline_powerline_fonts = 1
+let g:airline_theme='onedark'
