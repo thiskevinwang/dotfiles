@@ -2,13 +2,16 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
+tap "homebrew/cask-fonts"
+
+# Font
+cask "font-fira-code-nerd-font"
 
 # Binaries
 brew "autojump"
-brew "awscli"
 brew "aws-cdk"
+brew "awscli"
 brew "bat" # better cat
-brew "mas" # Mac App Store CLI
 brew "fnm" # Node version manager
 brew "fzf"
 brew "gh" # GitHub CLI
@@ -16,6 +19,7 @@ brew "gnupg"
 brew "go"
 brew "goreleaser"
 brew "kubectl"
+brew "mas" # Mac App Store CLI
 brew "neovim" # 'nvim'
 brew "node"
 brew "pinentry-mac"
