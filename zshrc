@@ -41,7 +41,7 @@ complete -F __start_kubectl k
 
 
 # Starship Prompt
-export STARSHIP_CONFIG=~/starship.toml
+export STARSHIP_CONFIG="$HOME/starship.toml"
 eval "$(starship init zsh)"
 
 # FZF
@@ -64,7 +64,6 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
 
 # fnm
-source <(fnm completions --shell zsh)
 eval "$(fnm env)"
 
 # Python
