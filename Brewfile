@@ -12,6 +12,7 @@ brew "autojump"
 brew "aws-cdk"
 brew "awscli"
 brew "bat" # better cat
+brew "cmake"
 brew "fnm" # Node version manager
 brew "fzf"
 brew "gh" # GitHub CLI
