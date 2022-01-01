@@ -49,7 +49,8 @@ cask 'visual-studio-code'
 cask "zoom"
 
 # Mac App Store
-# mas "Compressor", id: 424390742
-# mas "Final Cut Pro", id: 424389933
-# mas "Magnet", id: 441258766
-# mas "Xcode", id: 497799835
+mas "Compressor", id: 424390742
+mas "Final Cut Pro", id: 424389933
+mas "Magnet", id: 441258766
+mas "Xcode", id: 497799835
+mas "Kaleidoscope 3", id: 1575557335
