@@ -9,7 +9,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoUpdateBinaries' }
 Plug 'gcmt/taboo.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-fugitive'
@@ -41,3 +41,6 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
 nnoremap <C-i> :bn<CR>
+
+" Ctrl+d forward-delete
+inoremap <C-d> <Del>
