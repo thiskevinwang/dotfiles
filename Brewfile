@@ -19,6 +19,7 @@ brew "gh" # GitHub CLI
 brew "gnupg"
 brew "go"
 brew "goreleaser"
+brew "jq"
 brew "kubectl"
 brew "mas" # Mac App Store CLI
 brew "neovim" # 'nvim'
@@ -32,6 +33,7 @@ brew "yarn"
 
 # Apps
 cask "1password"
+cask "1password-cli"
 cask "discord"
 cask "docker"
 cask "dropbox"
@@ -40,6 +42,7 @@ cask "google-chrome"
 cask "imageoptim"
 cask "istat-menus"
 cask "iterm2"
+cask "kaleidoscope"
 cask "notion"
 cask "postman"
 cask "slack"
@@ -53,4 +56,4 @@ mas "Compressor", id: 424390742
 mas "Final Cut Pro", id: 424389933
 mas "Magnet", id: 441258766
 mas "Xcode", id: 497799835
-mas "Kaleidoscope 3", id: 1575557335
+#mas "Kaleidoscope 3", id: 1575557335
