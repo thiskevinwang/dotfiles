@@ -29,6 +29,7 @@ brew "ripgrep" # 'rg' better grep
 brew "starship"
 brew "vercel-cli"
 brew "watchman"
+brew "webp"
 brew "yarn"
 
 # Apps
