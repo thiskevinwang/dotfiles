@@ -3,6 +3,7 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/cask-fonts"
+tap "hashicorp/tap"
 
 # Font
 cask "font-fira-code-nerd-font"
@@ -19,6 +20,7 @@ brew "gh" # GitHub CLI
 brew "gnupg"
 brew "go"
 brew "goreleaser"
+brew "hashicorp/tap/terraform"
 brew "jq"
 brew "kubectl"
 brew "mas" # Mac App Store CLI
