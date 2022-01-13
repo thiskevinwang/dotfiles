@@ -33,3 +33,5 @@
 	branch = false
 	diff = false
 	log = false
+[gpg]
+	program = /opt/homebrew/bin/gpg
