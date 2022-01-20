@@ -26,6 +26,8 @@ plugins=(
   zsh-autosuggestions
 )
 
+export AWS_PAGER=""
+
 autoload -U compinit && compinit
 
 # Note this needs to come after plugins=(...)
