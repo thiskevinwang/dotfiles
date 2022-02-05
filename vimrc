@@ -24,10 +24,30 @@ Plug 'scrooloose/nerdtree'
 Plug 'myusuf3/numbers.vim'
 call plug#end()
 
-" set color scheme...
-set background=dark
-colorscheme everforest
+"-------------------------------------------------------------
+" Fix issue where code comments have highlighted background
+" - https://github.com/mhartington/oceanic-next/issues/25
+set t_ZH=
+set t_ZR=
+"-------------------------------------------------------------
 
+" Important!!
+if has('termguicolors')
+  set termguicolors
+endif
+
+" For dark version.
+set background=dark
+
+" For light version.
+" set background=light
+
+" Set contrast.
+" This configuration option should be placed before `colorscheme everforest`.
+" Available values: 'hard', 'medium'(default), 'soft'
+let g:everforest_background = 'hard'
+
+colorscheme everforest
 
 " Start NERDTree when Vim starts with a directory argument.
 autocmd StdinReadPre * let s:std_in=1
