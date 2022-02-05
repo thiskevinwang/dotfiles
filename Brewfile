@@ -23,6 +23,7 @@ brew "goreleaser"
 brew "hashicorp/tap/terraform"
 brew "jq"
 brew "kubectl"
+brew "kubectx"
 brew "mas" # Mac App Store CLI
 brew "neovim" # 'nvim'
 brew "node"
