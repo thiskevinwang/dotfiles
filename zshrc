@@ -40,6 +40,8 @@ source <(kubectl completion zsh)
 alias k=kubectl
 complete -F __start_kubectl k
 
+source <(minikube completion zsh)
+
 # 1password cli (op)
 # https://developer.1password.com/docs/cli/reference/commands/completion/
 eval "$(op completion zsh)"; compdef _op op
@@ -80,4 +82,5 @@ export ANDROID_SDK=/Users/kevin/Library/Android/sdk
 # Please make sure this block is at the end of this file.
 [ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
 #### END FIG ENV VARIABLES ####
+
 
