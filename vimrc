@@ -26,10 +26,13 @@ call plug#end()
 
 "-------------------------------------------------------------
 " Fix issue where code comments have highlighted background
-" - https://github.com/mhartington/oceanic-next/issues/25
-set t_ZH=
-set t_ZR=
+" and aren't italic
+" - https://github.com/mhartington/oceanic-next/issues/25a
+" - https://stackoverflow.com/a/21077380/9823455
+set t_ZH=[3m
+set t_ZR=[23m
 "-------------------------------------------------------------
+
 
 " Important!!
 if has('termguicolors')
