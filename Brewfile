@@ -38,6 +38,7 @@ brew "yarn"
 # Apps
 cask "1password"
 cask "1password-cli"
+cask "cleanshot"
 cask "discord"
 cask "docker"
 cask "firefox"
