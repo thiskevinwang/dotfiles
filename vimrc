@@ -20,21 +20,31 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'b4b4r07/vim-hcl'
 Plug 'scrooloose/nerdtree'
 Plug 'myusuf3/numbers.vim'
+Plug 'prettier/vim-prettier', { 'do': 'npm i' }
 call plug#end()
+
+"-------------------------------------------
+" prettier
+"-------------------------------------------
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#autoformat_config_present = 0
+
+set tabstop=2
+set shiftwidth=2
 
 "-------------------------------------------------------------
 " Fix issue where code comments have highlighted background
 " and aren't italic
-" - https://github.com/mhartington/oceanic-next/issues/25a
+" - https://github.com/mhartington/oceanic-next/issues/25
 " - https://stackoverflow.com/a/21077380/9823455
 set t_ZH=[3m
 set t_ZR=[23m
 "-------------------------------------------------------------
 
-
-" Important!!
 if has('termguicolors')
   set termguicolors
 endif
@@ -46,10 +56,7 @@ set background=dark
 " set background=light
 
 " Set contrast.
-" This configuration option should be placed before `colorscheme everforest`.
-" Available values: 'hard', 'medium'(default), 'soft'
 let g:everforest_background = 'hard'
-
 colorscheme everforest
 
 " Start NERDTree when Vim starts with a directory argument.
@@ -64,12 +71,47 @@ let g:airline_powerline_fonts = 1
 "let g:airline_theme='github'
 let g:airline_theme='angr'
 
+" change leader key
+let mapleader = ","
+
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
-nnoremap <C-i> :bn<CR>
+" Relies on iTerm mapping of ⌘j to \<C-j>
+" Open terminal; Like VScode behavior
+nnoremap <C-j> :term<CR>
 
-" Ctrl+d forward-delete
+" Ctrl+d forward-delete in INSERT mode
 inoremap <C-d> <Del>
+
+" Make integrated terminal open below
+set splitbelow
+set termwinsize=25x0
+
+set belloff=all
+
+" Notes
+" [Ctrl-w w] swaps between editor & terminal windows
+" [Ctrl-d]   in terminal, closes terminal
+"
+" Resizing buffer splits
+" [Ctrl-w =] makes splits equal size
+" [Ctrl-w -] decreases current split by 1
+" [Ctrl-w +] increases current split by 1
+" [Ctrl-w _] maximizes current split
+" [Ctrl-w :resize 20] resizes current split to the specified height
+"
+"
+" Scrolling in terminal
+" [Ctrl-w Shift-n] pauses terminal; You can navigate now
+"   [i] resumes terminal
+"
+" Mapping mac command key (⌘) — 2 step process
+" 1. Specify a Keyboard Shortcut in iTerm2
+"    > Preferences > Profiles > Keys 
+"      > Keyboard Shortcut: ⌘j
+"      > Action Send Text with “vim” Special Chars
+"        example: ⌘j -> \<C-j>
+" 2. Specify the mapping in .vimrc as usual
