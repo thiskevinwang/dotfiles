@@ -26,6 +26,11 @@ plugins=(
   zsh-autosuggestions
 )
 
+# go-bindata
+export PATH=$PATH:$(go env GOPATH)/bin
+# GOPATH
+export GOPATH=$(go env GOPATH)
+
 export AWS_PAGER=""
 
 autoload -U compinit && compinit
@@ -83,4 +88,13 @@ export ANDROID_SDK=/Users/kevin/Library/Android/sdk
 [ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
 #### END FIG ENV VARIABLES ####
 
-
+# function
+function aws_config() {
+	eval $(op signin)
+	eval $(op get item "AWS" | jq -r '.details.sections[1].fields[2] | "export ACCESS_KEY_ID=\(.v)"')
+	eval $(op get item "AWS" | jq -r '.details.sections[1].fields[3] | "export SECRET_ACCESS_KEY=\(.v)"')
+	aws configure set aws_access_key_id $ACCESS_KEY_ID
+	aws configure set aws_secret_access_key $SECRET_ACCESS_KEY
+	aws configure set aws_session_token ""
+	echo "✅"
+}
