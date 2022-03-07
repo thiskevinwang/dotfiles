@@ -93,8 +93,8 @@ function aws_config() {
 	eval $(op signin)
 	eval $(op get item "AWS" | jq -r '.details.sections[1].fields[2] | "export ACCESS_KEY_ID=\(.v)"')
 	eval $(op get item "AWS" | jq -r '.details.sections[1].fields[3] | "export SECRET_ACCESS_KEY=\(.v)"')
+	rm ~/.aws/credentials
 	aws configure set aws_access_key_id $ACCESS_KEY_ID
 	aws configure set aws_secret_access_key $SECRET_ACCESS_KEY
-	aws configure set aws_session_token ""
 	echo "✅"
 }

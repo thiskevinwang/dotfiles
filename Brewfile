@@ -9,6 +9,7 @@ tap "hashicorp/tap"
 cask "font-fira-code-nerd-font"
 
 # Binaries
+brew "asciinema"
 brew "autojump"
 brew "aws-cdk"
 brew "awscli"
@@ -55,7 +56,7 @@ cask "raycast"
 cask "slack"
 #cask "steam"
 cask "tableplus"
-cask 'visual-studio-code'
+cask "visual-studio-code"
 cask "zoom"
 
 # Mac App Store
