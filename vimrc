@@ -24,6 +24,7 @@ Plug 'b4b4r07/vim-hcl'
 Plug 'scrooloose/nerdtree'
 Plug 'myusuf3/numbers.vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm i' }
+Plug 'cespare/vim-toml', { 'branch': 'main' }
 call plug#end()
 
 "-------------------------------------------
