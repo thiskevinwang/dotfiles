@@ -1,3 +1,7 @@
+# Fig pre block. Keep at the top of this file.
+export PATH="${PATH}:${HOME}/.local/bin"
+eval "$(fig init zsh pre)"
+
 # Ensure brew can be found
 # Issue seen on m1 max mbp
 [[ -f /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
@@ -83,10 +87,7 @@ alias python=/usr/local/bin/python3
 # Android
 export ANDROID_SDK=/Users/kevin/Library/Android/sdk
 
-#### FIG ENV VARIABLES ####
-# Please make sure this block is at the end of this file.
-[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
+
 
 # function
 function aws_config() {
@@ -98,3 +99,6 @@ function aws_config() {
 	aws configure set aws_secret_access_key $SECRET_ACCESS_KEY
 	echo "✅"
 }
+
+# Fig post block. Keep at the bottom of this file.
+eval "$(fig init zsh post)"
