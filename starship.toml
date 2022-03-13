@@ -9,8 +9,8 @@ add_newline = false
 
 # Replace the "❯" symbol in the prompt with "Λ"
 [character]      # The name of the module we are configuring is "character"
-success_symbol = "[Λ](bold green) "
-error_symbol = "[✗](bold red) "
+success_symbol = "[λ](bold green) "
+error_symbol = "[χ](bold red) "
 vicmd_symbol = "[V](bold green) "
 
 [git_status]
@@ -21,6 +21,10 @@ behind = "${count}"
 modified = "${count} "
 staged = "${count} "
 
+[kubernetes]
+symbol = "☸ "
+format = '[$symbol$context( \($namespace\))]($style) in '
+disabled = false
 
 ### Presets
 [aws]
