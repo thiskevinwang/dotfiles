@@ -9,10 +9,6 @@ eval "$(fig init zsh pre)"
 # Setup TTY for GPG
 export GPG_TTY=$(tty)
 
-#FIG ENV VARIABLES ####
-# Please make sure this block is at the start of this file.
-[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
-#### END FIG ENV VARIABLES ####
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -102,3 +98,4 @@ function aws_config() {
 
 # Fig post block. Keep at the bottom of this file.
 eval "$(fig init zsh post)"
+
