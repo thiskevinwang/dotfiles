@@ -26,6 +26,9 @@ plugins=(
   zsh-autosuggestions
 )
 
+# node repl
+alias repl="NODE_PATH=$(npm root -g) node"
+
 # go-bindata
 export PATH=$PATH:$(go env GOPATH)/bin
 # GOPATH

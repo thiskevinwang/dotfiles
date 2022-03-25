@@ -32,6 +32,7 @@ brew "neovim" # 'nvim'
 brew "node"
 brew "pinentry-mac"
 brew "protobuf"
+brew "postgresql" # psql
 brew "ripgrep" # 'rg' better grep
 brew "starship"
 brew "vercel-cli"
