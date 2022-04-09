@@ -21,9 +21,6 @@
 	email = kwangsan@gmail.com
 	signingkey = 9E3A227DFAE539A7
 
-[branch]
-	autosetuprebase = always
-
 [commit]
 	gpgsign = true
 [pager]
