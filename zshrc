@@ -17,13 +17,13 @@ export ZSH="/Users/kevin/.oh-my-zsh"
 
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  aws
-  fzf
-  git
-  zsh-completions
-  docker
-  docker-compose
-  zsh-autosuggestions
+    aws
+    fzf
+    git
+    zsh-completions
+    docker
+    docker-compose
+    zsh-autosuggestions
 )
 
 # node repl
@@ -90,15 +90,41 @@ export ANDROID_SDK=/Users/kevin/Library/Android/sdk
 
 # function
 function aws_config() {
-	eval $(op signin)
-	eval $(op get item "AWS" | jq -r '.details.sections[1].fields[2] | "export ACCESS_KEY_ID=\(.v)"')
-	eval $(op get item "AWS" | jq -r '.details.sections[1].fields[3] | "export SECRET_ACCESS_KEY=\(.v)"')
-	rm ~/.aws/credentials
-	aws configure set aws_access_key_id $ACCESS_KEY_ID
-	aws configure set aws_secret_access_key $SECRET_ACCESS_KEY
-	echo "✅"
+    echo "============"
+    echo " AWS Config "
+    echo "============"
+    
+    access_key_id_label="Access key ID"
+    secret_access_key_label="Secret access key"
+
+    eval $(op signin)
+
+    AWS_ACCESS_KEY_ID=$(op item get "AWS" --fields label=$access_key_id_label)
+    AWS_SECRET_ACCESS_KEY=$(op item get "AWS" --fields label=$secret_access_key_label)
+    
+    if [ -e ~/.aws/credentials ]; then
+        rm ~/.aws/credentials
+    fi
+
+
+    eval $(export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID)
+    eval $(export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY)
+
+    aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+    aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+
+    echo "✅"
+}
+
+function aws_config_clear() {
+    echo "=================="
+    echo " AWS Config Clear "
+    echo "=================="
+    unset AWS_ACCESS_KEY_ID
+    unset AWS_SECRET_ACCESS_KEY
+    unset AWS_SESSION_TOKEN
+    unset AWS_SESSION_EXPIRATION
 }
 
 # Fig post block. Keep at the bottom of this file.
 eval "$(fig init zsh post)"
-
