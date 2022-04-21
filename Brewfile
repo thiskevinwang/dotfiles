@@ -34,8 +34,12 @@ brew "pinentry-mac"
 brew "protobuf"
 brew "postgresql" # psql
 brew "ripgrep" # 'rg' better grep
+brew "ruby"
+brew "rbenv"
+brew "ruby-build"
 brew "starship"
 brew "vercel-cli"
+brew "watch"
 brew "watchman"
 brew "webp"
 brew "yarn"

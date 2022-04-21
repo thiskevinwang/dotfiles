@@ -1,7 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-export PATH="${PATH}:${HOME}/.local/bin"
-eval "$(fig init zsh pre)"
-
+. "$HOME/.fig/shell/zshrc.pre.zsh"
 # Ensure brew can be found
 # Issue seen on m1 max mbp
 [[ -f /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
@@ -83,6 +81,29 @@ eval "$(fnm env --use-on-cd)"
 # Python
 alias python=/usr/local/bin/python3
 
+# Ruby
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# By default, binaries installed by gem will be placed into:
+#   /opt/homebrew/lib/ruby/gems/3.1.0/bin
+export PATH="/opt/homebrew/lib/ruby/gems/3.1.0/bin:$PATH"
+#
+# You may want to add this to your PATH.
+#
+# ruby is keg-only, which means it was not symlinked into /opt/homebrew,
+# because macOS already provides this software and installing another version in
+# parallel can cause all kinds of trouble.
+#
+# If you need to have ruby first in your PATH, run:
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+#
+# For compilers to find ruby you may need to set:
+#   export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
+#   export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
+#
+# For pkg-config to find ruby you may need to set:
+#   export PKG_CONFIG_PATH="/opt/homebrew/opt/ruby/lib/pkgconfig"
+
+
 # Android
 export ANDROID_SDK=/Users/kevin/Library/Android/sdk
 
@@ -127,4 +148,4 @@ function aws_config_clear() {
 }
 
 # Fig post block. Keep at the bottom of this file.
-eval "$(fig init zsh post)"
+. "$HOME/.fig/shell/zshrc.post.zsh"
