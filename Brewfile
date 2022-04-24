@@ -71,3 +71,5 @@ cask "zoom"
 #mas "Magnet", id: 441258766
 #mas "Xcode", id: 497799835
 #mas "Kaleidoscope 3", id: 1575557335
+# mas "Transporter", id: 1450874784
+
