@@ -14,6 +14,8 @@ brew "autojump"
 brew "aws-cdk"
 brew "awscli"
 brew "bat" # better cat
+brew "cfssl"
+brew "cfssljson"
 brew "cmake"
 brew "dog"
 brew "fnm" # Node version manager
