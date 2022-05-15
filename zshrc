@@ -107,7 +107,8 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 # Android
 export ANDROID_SDK=/Users/kevin/Library/Android/sdk
 
-
+# Terraform
+alias tf=terraform
 
 # function
 function aws_config() {
