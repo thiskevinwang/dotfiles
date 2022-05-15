@@ -31,6 +31,7 @@ brew "kubectl"
 brew "kubectx"
 brew "mas" # Mac App Store CLI
 brew "neovim" # 'nvim'
+brew "ngrok/ngrok/ngrok"
 brew "node"
 brew "pinentry-mac"
 brew "protobuf"
