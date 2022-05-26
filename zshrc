@@ -27,6 +27,9 @@ plugins=(
 # node repl
 alias repl="NODE_PATH=$(npm root -g) node"
 
+# deno
+export PATH="$HOME/.deno/bin:$PATH"
+
 # go-bindata
 export PATH=$PATH:$(go env GOPATH)/bin
 # GOPATH
@@ -112,7 +115,9 @@ alias tf=terraform
 
 # function
 function aws_config() {
-    echo "============"
+		aws_config_clear
+
+		echo "============"
     echo " AWS Config "
     echo "============"
     
@@ -147,6 +152,8 @@ function aws_config_clear() {
     unset AWS_SESSION_TOKEN
     unset AWS_SESSION_EXPIRATION
 }
+
+complete -o nospace -C /Users/kevin/go/bin/waypoint waypoint
 
 # Fig post block. Keep at the bottom of this file.
 . "$HOME/.fig/shell/zshrc.post.zsh"

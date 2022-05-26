@@ -15,8 +15,8 @@ brew "aws-cdk"
 brew "awscli"
 brew "bat" # better cat
 brew "cfssl"
-brew "cfssljson"
 brew "cmake"
+brew "deno"
 brew "dog"
 brew "fnm" # Node version manager
 brew "fzf"
@@ -31,7 +31,6 @@ brew "kubectl"
 brew "kubectx"
 brew "mas" # Mac App Store CLI
 brew "neovim" # 'nvim'
-brew "ngrok/ngrok/ngrok"
 brew "node"
 brew "pinentry-mac"
 brew "protobuf"
@@ -41,11 +40,13 @@ brew "ruby"
 brew "rbenv"
 brew "ruby-build"
 brew "starship"
+brew "tree"
 brew "vercel-cli"
 brew "watch"
 brew "watchman"
 brew "webp"
 brew "yarn"
+brew "yq" # jq, but for YAML
 
 # Apps
 cask "1password"
