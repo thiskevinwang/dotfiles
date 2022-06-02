@@ -153,6 +153,10 @@ function aws_config_clear() {
     unset AWS_SESSION_EXPIRATION
 }
 
+function get_ghcr_token() {
+	echo $(op item get "github" --format=json --fields label=CR_PAT | jq -r ".value")
+}
+
 complete -o nospace -C /Users/kevin/go/bin/waypoint waypoint
 
 # Fig post block. Keep at the bottom of this file.
