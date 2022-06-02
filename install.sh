@@ -13,7 +13,7 @@ which -s brew
 if [[ $? != 0 ]] ; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
-  echo "\tbrew is installed"
+  echo "  brew is installed"
 fi
 echo ""
 
@@ -23,7 +23,7 @@ which -s rustup
 if [[ $? != 0 ]] ; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 else
-  echo "\rustup is installed"
+  echo "  rustup is installed"
 fi
 echo ""
 
@@ -35,7 +35,7 @@ if [[ $? != 0 ]] ; then
     cargo install wasm-pack
   fi
 else
-  echo "\wasm-pack is installed"
+  echo "  wasm-pack is installed"
 fi
 echo ""
 
@@ -46,9 +46,9 @@ ZSH_CUSTOM_DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom/}/plugins/zsh-autosuggestions
 ZSH_AUTOSUGGESTIONS=https://github.com/zsh-users/zsh-autosuggestions
 if [[ -d $ZSH_CUSTOM_DIR ]]
 then
-  echo "\tLooks like Oh My Zsh is already installed"
+  echo "  Looks like Oh My Zsh is already installed"
 else
-  echo "\tCloning $ZSH_AUTOSUGGESTIONS"
+  echo "  Cloning $ZSH_AUTOSUGGESTIONS"
   git clone $ZSH_AUTOSUGGESTIONS $ZSH_CUSTOM_DIR
 fi
 echo ""
@@ -103,17 +103,18 @@ for path in $SCRIPT_DIR/*; do
   case $UNAME in
     cygwin* | mingw32*)
       cp -R $path "$target"
-      echo "\t· Copied $name to $target."
+      echo "  · Copied $name to $target."
       ;;
     *)
       ln -s $path "$target"
-      echo "\t· Linked $name to $target."
+      echo "  · Linked $name to $target."
       ;;
   esac
 done
 echo ""
 
 # setup the vim directory
+echo "✌️ Vim"
 pushd $HOME >/dev/null
 if [ ! -d ".vim/bundle" ]; then
   echo "Installing Vim plugins"
@@ -122,6 +123,18 @@ if [ ! -d ".vim/bundle" ]; then
   TERM=dumb vim +PlugInstall +qall >vim.log 2>&1
 fi
 popd >/dev/null
+echo ""
+
+# setup nvim config
+# https://vi.stackexchange.com/questions/12794/how-to-share-config-between-vim-and-neovim?newreg=0068816df38e445baf18490a2a09fc4c
+echo "🆕 Neovim"
+mkdir -p ~/.config/nvim
+touch ~/.config/nvim/init.vim
+cat > ~/.config/nvim/init.vim <<EOL
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath=&runtimepath
+source ~/.vimrc
+EOL
 echo ""
 
 ##################
@@ -136,11 +149,11 @@ powerline_fonts() {
     [yY][eE][sS]|[yY])
     git clone https://github.com/powerline/fonts.git --depth=1 --quiet
     pushd fonts >/dev/null
-    ./install.sh | sed 's/^/\t/'
+    ./install.sh | sed 's/^/  /'
     popd >/dev/null
     rm -rf fonts
     break;;
-    *) echo "\tSkipping..."; 
+    *) echo " Skipping..."; 
     break;;
   esac
   echo ""
@@ -154,9 +167,9 @@ brew_bundle() {
   read -r -p "[y/N] " response
   case $response in
     [yY][eE][sS]|[yY])
-    brew bundle | sed 's/^/\t/'
+    brew bundle | sed 's/^/ /'
     break;;
-    *) echo "\tSkipping..."; 
+    *) echo " Skipping..."; 
     break;;
   esac
   echo ""
@@ -168,15 +181,15 @@ vscode_extensions() {
   printf "💭 Install VSCode extentions now? "
   which -s code
   if [[ $? != 0 ]] ; then
-    echo "\n\tcode cli is not installed";
-    echo "\n\tskipping for now..."
+    echo "\n  code cli is not installed";
+    echo "\n  skipping for now..."
   else
     read -r -p "[y/N] " response
     case $response in
       [yY][eE][sS]|[yY])
-      sh ./.vscode/install-extensions.sh | sed 's/^/\t/'
+      sh ./.vscode/install-extensions.sh | sed 's/^/  /'
       break;;
-      *) echo "\tSkipping..."; 
+      *) echo " Skipping..."; 
       break;;
     esac
   fi
@@ -199,9 +212,9 @@ if [[ ! -e ~/.gnupg/gpg-agent.conf ]]; then
   echo "pinentry-program $(which pinentry-mac)" >> ~/.gnupg/gpg-agent.conf
 fi
 
-printf "\t"; gpg-agent;
+printf "  "; gpg-agent;
 if [[ $? != 0 ]] ; then
-  echo "\t♻️ starting new gpg-agent"
+  echo "  ♻️ starting new gpg-agent"
   gpg-agent --daemon
   wait
 fi
