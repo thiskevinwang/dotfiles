@@ -7,7 +7,9 @@ call plug#begin()
 " list
 Plug 'sainnhe/everforest'
 " For vim-colors-github to work, make sure it's at the top of the plugin list
-Plug 'cormacrelf/vim-colors-github'
+" Plug 'cormacrelf/vim-colors-github'
+Plug 'projekt0n/github-nvim-theme'
+
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -48,7 +50,7 @@ set t_ZR=[23m
 "-------------------------------------------------------------
 
 if has('termguicolors')
-  set termguicolors
+	set termguicolors
 endif
 
 " For dark version.
@@ -57,21 +59,30 @@ set background=dark
 " For light version.
 " set background=light
 
-" Set contrast.
-let g:everforest_background = 'hard'
-colorscheme everforest
+"-------------------------------------------------------------
+" Set nvim theme to github
+" Set vim theme to everforest
+"-------------------------------------------------------------
+if has('nvim')
+	colorscheme github_dark
+else
+	let g:everforest_background = 'hard'
+	colorscheme everforest
+endif
+
 
 " Start NERDTree when Vim starts with a directory argument.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+			\ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 " No Arrows, only rectangles — https://github.com/vim-airline/vim-airline/issues/1688
 let g:airline_powerline_fonts = 1
 "let g:airline_theme='github'
-let g:airline_theme='angr'
+"let g:airline_theme='angr'
+let g:airline_theme='violet'
 
 " change leader key
 let mapleader = ","
@@ -79,7 +90,7 @@ let mapleader = ","
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+" nnoremap <C-f> :NERDTreeFind<CR>
 
 " Relies on iTerm mapping of ⌘j to \<C-j>
 " Open terminal; Like VScode behavior
@@ -115,7 +126,7 @@ set belloff=all
 "
 " Mapping mac command key (⌘) — 2 step process
 " 1. Specify a Keyboard Shortcut in iTerm2
-"    > Preferences > Profiles > Keys 
+"    > Preferences > Profiles > Keys
 "      > Keyboard Shortcut: ⌘j
 "      > Action Send Text with “vim” Special Chars
 "        example: ⌘j -> \<C-j>
