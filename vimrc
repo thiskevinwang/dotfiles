@@ -125,6 +125,10 @@ endif
 
 " Ctrl+d forward-delete in INSERT mode
 inoremap <C-d> <Del>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
 
 " Make integrated terminal open below
 set splitbelow
