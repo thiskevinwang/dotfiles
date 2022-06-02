@@ -23,12 +23,21 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'b4b4r07/vim-hcl'
+
 Plug 'scrooloose/nerdtree'
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
+
 Plug 'myusuf3/numbers.vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm i' }
 Plug 'cespare/vim-toml', { 'branch': 'main' }
 Plug 'github/copilot.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'sindrets/diffview.nvim'
 call plug#end()
+
+" keep cursor as a block during insert mode
+set guicursor=i:block
 
 "-------------------------------------------
 " prettier
@@ -87,10 +96,23 @@ let g:airline_theme='violet'
 " change leader key
 let mapleader = ","
 
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-" nnoremap <C-f> :NERDTreeFind<CR>
+"-------------------------------------------------------------
+" File tree
+" - vim: NERDTree
+" - nvim: nvim-tree.lua
+"-------------------------------------------------------------
+if has('nvim')
+	lua require'nvim-tree'.setup {}
+	nnoremap <C-n> :NvimTreeToggle<CR>
+	nnoremap <leader>r :NvimTreeRefresh<CR>
+	nnoremap <leader>n :NvimTreeFindFile<CR>
+else
+	nnoremap <leader>n :NERDTreeFocus<CR>
+	nnoremap <C-n> :NERDTree<CR>
+	nnoremap <C-t> :NERDTreeToggle<CR>
+	" nnoremap <C-f> :NERDTreeFind<CR>
+endif
+
 
 " Relies on iTerm mapping of ⌘j to \<C-j>
 " Open terminal; Like VScode behavior
