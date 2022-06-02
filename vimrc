@@ -34,6 +34,7 @@ Plug 'cespare/vim-toml', { 'branch': 'main' }
 Plug 'github/copilot.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim'
+Plug 'akinsho/toggleterm.nvim',{ 'tag': 'v2.*' }
 call plug#end()
 
 " keep cursor as a block during insert mode
@@ -116,7 +117,11 @@ endif
 
 " Relies on iTerm mapping of ⌘j to \<C-j>
 " Open terminal; Like VScode behavior
-nnoremap <C-j> :term<CR>
+if has('nvim')
+	nnoremap <C-J> :ToggleTerm<CR>
+else
+	nnoremap <C-j> :term<CR>
+endif
 
 " Ctrl+d forward-delete in INSERT mode
 inoremap <C-d> <Del>
