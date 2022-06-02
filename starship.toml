@@ -25,6 +25,9 @@ staged = "${count} "
 symbol = "☸ "
 format = '[$symbol$context( \($namespace\))]($style) in '
 disabled = false
+[kubernetes.context_aliases]
+"gke_.*_(?P<var_cluster>[\\w-]+)" = " $var_cluster"
+
 
 ### Presets
 [aws]
