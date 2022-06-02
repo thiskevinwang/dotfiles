@@ -25,6 +25,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'myusuf3/numbers.vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm i' }
 Plug 'cespare/vim-toml', { 'branch': 'main' }
+Plug 'github/copilot.vim'
 call plug#end()
 
 "-------------------------------------------
@@ -89,7 +90,10 @@ inoremap <C-d> <Del>
 
 " Make integrated terminal open below
 set splitbelow
-set termwinsize=25x0
+
+if !has('nvim')
+	set termwinsize=25x0
+endif
 
 set belloff=all
 
