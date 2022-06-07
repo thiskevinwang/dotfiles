@@ -39,3 +39,6 @@
 	trustExitCode = true
 [mergetool]
 	prompt = false
+[core]
+	editor = nvim
+	page = false
