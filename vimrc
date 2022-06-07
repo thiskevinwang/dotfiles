@@ -32,9 +32,14 @@ Plug 'myusuf3/numbers.vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm i' }
 Plug 'cespare/vim-toml', { 'branch': 'main' }
 Plug 'github/copilot.vim'
-Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim'
-Plug 'akinsho/toggleterm.nvim',{ 'tag': 'v2.*' }
+if has('nvim')
+	Plug 'akinsho/toggleterm.nvim',{ 'tag': 'v2.*' }
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim'
+	Plug 'rcarriga/nvim-notify'
+endif
+Plug 'kristijanhusak/vim-simple-notifications'
 call plug#end()
 
 " keep cursor as a block during insert mode
@@ -81,11 +86,6 @@ else
 endif
 
 
-" Start NERDTree when Vim starts with a directory argument.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-			\ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
-
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 " No Arrows, only rectangles — https://github.com/vim-airline/vim-airline/issues/1688
@@ -95,13 +95,47 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='violet'
 
 " change leader key
-let mapleader = ","
+"let mapleader = ","
+
+
+" start up notification
+"
+call notifications#info([
+			\"🐶 Welcome to nvim!",
+			\"ℹ️  Note: Leader is (\\)",
+			\"",
+			\"Useful cmds:",
+			\"<leader>ff: Telescope find file",
+			\"<leader>fg: Telescope live_grep",
+			\"<C-\\>: ToggleTerm",
+			\"<C-f,b,n,p>: Switch splits",
+			\])
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 
 "-------------------------------------------------------------
 " File tree
 " - vim: NERDTree
 " - nvim: nvim-tree.lua
 "-------------------------------------------------------------
+autocmd StdinReadPre * let s:std_in=1
+
+"-- open NERDTree on `vim .` ---------------------------------
+autocmd VimEnter * if argc() == 1 && has('vim') && isdirectory(argv()[0]) && !exists('s:std_in') |
+			\ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+
+"-- open nvim-tree on `nvim .` -------------------------------
+autocmd VimEnter * if argc() == 1 && has('nvim') && isdirectory(argv()[0]) && !exists('s:std_in') |
+			\ execute 'NvimTreeOpen' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+"-- auto close nvim-tree if last window is closed ------------
+autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+"-------------------------------------------------------------
+
 if has('nvim')
 	lua require'nvim-tree'.setup {}
 	nnoremap <C-n> :NvimTreeToggle<CR>
@@ -118,17 +152,25 @@ endif
 " Relies on iTerm mapping of ⌘j to \<C-j>
 " Open terminal; Like VScode behavior
 if has('nvim')
-	nnoremap <C-J> :ToggleTerm<CR>
+	nnoremap <C-\> :ToggleTerm<CR>
+	tnoremap <C-\> <C-\><C-n><C-W>k
 else
 	nnoremap <C-j> :term<CR>
 endif
 
 " Ctrl+d forward-delete in INSERT mode
 inoremap <C-d> <Del>
+
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 inoremap <C-p> <Up>
 inoremap <C-n> <Down>
+
+" Ctrl+h/j/k/l/ navigates between splits
+nnoremap <C-h> <C-W>h " left
+nnoremap <C-l> <C-W>l " right
+nnoremap <C-j> <C-W>j " down
+nnoremap <C-k> <C-W>k " up
 
 " Make integrated terminal open below
 set splitbelow
@@ -138,6 +180,13 @@ if !has('nvim')
 endif
 
 set belloff=all
+
+" http://vimcasts.org/episodes/neovim-terminal-mappings/
+if has('nvim')
+	tnoremap <Esc> <C-\><C-n>
+	tnoremap <M-[> <Esc>
+	tnoremap <C-v><Esc> <Esc>
+endif
 
 " Notes
 " [Ctrl-w w] swaps between editor & terminal windows
