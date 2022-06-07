@@ -1,43 +1,43 @@
 # Don't print a new line at the start of the prompt
 add_newline = false
-
+command_timeout = 1200 # ms
+continuation_prompt = "▶▶"
 # A minimal left prompt
 #format = """$all"""
 
 format = """
-[](#4c2889)\
+[](#26235B)\
 $kubernetes\
-[](#4c2889 bg:#7928ca)\
+[](#26235B bg:#812878)\
 $directory\
-[](fg:#7928ca bg:#8a63d2 )\
+[](fg:#812878 bg:#A22160 )\
 $git_branch\
-[](fg:#fdf6e3 bg:#8a63d2)\
+[](fg:#fdf6e3 bg:#A22160)\
 $git_status\
-[](fg:#8a63d2 bg:#0761d1)\
+[](fg:#A22160 bg:#CC2336)\
 $golang\
 $nodejs\
 $rust\
 $swift\
-[](fg:#0761d1 bg:#0070f3)\
-$docker_context\
-[](fg:#0070f3 bg:#3291ff)\
-$aws\
-[](fg:#fdf6e3 bg:#3291ff)\
+[](fg:#CC2336 bg:#E4682A)\
 $gcloud\
+[](fg:#E4682A bg:#F69824)\
+$aws\
 $terraform\
-[](fg:#3291ff)\
+[](fg:#F69824)\
 $fill $cmd_duration
-$character
+${custom.waypoint}└─ $character
 """
 
+# [](fg:#fdf6e3 bg:#F69824)\
 # move the rest of the prompt to the right
 # right_format = """$all"""
 
 # Replace the "❯" symbol in the prompt with "Λ"
 [character]      # The name of the module we are configuring is "character"
-success_symbol = "[λ](bold green) "
-error_symbol = "[χ](bold red) "
-vicmd_symbol = "[V](bold green) "
+success_symbol = "[λ](bold green)"
+error_symbol = "[χ](bold red)"
+vicmd_symbol = "[V](bold green)"
 
 # [git_status]
 # format = '([ \[$all_status$ahead_behind\]]($style) )'
@@ -49,58 +49,54 @@ vicmd_symbol = "[V](bold green) "
 
 [kubernetes]
 symbol = "☸ "
-style = "bg:#4c2889 fg:#fdf6e3"
+style = "bg:#26235B fg:#fdf6e3"
 format = '[$symbol$context(\($namespace\)) ]($style)'
 disabled = false
 [kubernetes.context_aliases]
 "gke_.*_(?P<var_cluster>[\\w-]+)" = "$var_cluster"
 
 [directory]
-style = "bg:#7928ca fg:#fdf6e3"
-format = "[ $path ]($style)"
+style = "bg:#812878 fg:#fdf6e3"
+format = "[  $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
-[docker_context]
-symbol = " "
-style = "bg:#0070f3"
-format = '[ $symbol $context ]($style) $path'
-
 [git_branch]
 symbol = ""
-style = "bg:#8a63d2 fg:#fdf6e3"
+style = "bg:#A22160 fg:#fdf6e3"
 # truncation_length = 7
 truncation_symbol = "…/"
 format = '[ $symbol $branch]($style)'
 
 [git_status]
-style = "bg:#8a63d2 fg:#fdf6e3"
+style = "bg:#A22160 fg:#fdf6e3"
 ahead = "${count}"
 diverged = "⇕${behind_count} ${ahead_count}"
 behind = "${count}"
 modified = "${count} "
 staged = "${count} "
-format = '([\[$all_status$ahead_behind\]]($style))'
+format = '([\[$all_status$ahead_behind\] ]($style))'
 
 [golang]
-symbol = " "
-style = "bg:#0761d1 fg:#fdf6e3"
-format = '[ $symbol ($version) ]($style)'
+symbol = ""
+style = "bg:#CC2336 fg:#fdf6e3"
+format = '[ $symbol $version ]($style)'
 
 [java]
 symbol = " "
-style = "bg:#0761d1 fg:#fdf6e3"
-format = '[ $symbol ($version) ]($style)'
+style = "bg:#CC2336 fg:#fdf6e3"
+format = '[ $symbol $version ]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#0761d1 fg:#fdf6e3"
-format = '[ $symbol ($version) ]($style)'
+style = "bg:#CC2336 fg:#fdf6e3"
+# style = "bg:#303030 fg:#68A063 bold"
+format = '[ $symbol $version ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#0761d1 fg:#fdf6e3"
-format = '[ $symbol ($version) ]($style)'
+style = "bg:#CC2336 fg:#fdf6e3"
+format = '[ $symbol $version ]($style)'
 
 [package]
 symbol = " "
@@ -122,16 +118,16 @@ symbol = "ﯣ "
 
 [aws]
 symbol = " "
-style = "bg:#3291ff fg:#fdf6e3"
-format = '[ $symbol$region]($style)'
+style = "bg:#F69824 fg:#fdf6e3"
+format = '[ $symbol$region ]($style)'
 
 [gcloud]
 symbol = " "
-style = "bg:#3291ff fg:#fdf6e3"
-format = "[ $symbol$account ]($style)"
+style = "bg:#E4682A fg:#fdf6e3"
+format = '[ $symbol$account($region)]($style)'
 
 [terraform]
-style = "bg:#3291ff fg:#fdf6e3"
+style = "bg:#F69824 fg:#fdf6e3"
 format = "[🏎💨 $version$workspace ]($style)"
 
 [cmd_duration]
@@ -140,4 +136,21 @@ format = "[](fg:black)[ $duration](bold bg:black fg:white)[](fg:black)"
 
 [fill]
 symbol = " "
+
+[custom.waypoint]
+detect_files = ["waypoint.hcl"]
+command = """
+waypoint status -json \
+| jq -r '
+    [
+        { Name: .Project.Name, App:.Applications[].App, Release: .Applications[].ReleaseStatus }
+        | to_entries[]
+        | [ .key, .value ]
+        | join(": ")
+    ]
+    | join("  ")'
+"""
+symbol = "wp"
+style = "fg:#14c6cb bg:#252937"
+format = "├─ [](fg:#252937)[$symbol  $output]($style)[](fg:#252937)\n"
 
