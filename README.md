@@ -4,9 +4,12 @@ This is me managing my Dotfiles, Brew Binaries, Mac Apps, VSCode extensions
 
 ## What My Setup Looks Like
 
-<time datetime="2022-06-09">June 9, 2022</time>
+>**Note**: Updated <time datetime="2022-06-09">June 9, 2022</time>
 
-![CleanShot 2022-06-09 at 20 01 25@2x](https://user-images.githubusercontent.com/26389321/172964366-e67eb0a9-c5f8-41f9-bbd0-bd012d534adb.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/26389321/172965684-4902db08-549d-4448-9d88-d8d0440d3311.png)">
+  <img alt="Screenshot of neovim setup" src="https://user-images.githubusercontent.com/26389321/172965870-1a8fa913-2597-45f2-9ea2-e22478bab9ca.png">
+</picture>
 
 
 ## Quickstart
