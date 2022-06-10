@@ -7,7 +7,7 @@ This is me managing my Dotfiles, Brew Binaries, Mac Apps, VSCode extensions
 >**Note**: Updated <time datetime="2022-06-09">June 9, 2022</time>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/26389321/172965684-4902db08-549d-4448-9d88-d8d0440d3311.png)">
+  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/26389321/172965684-4902db08-549d-4448-9d88-d8d0440d3311.png">
   <img alt="Screenshot of neovim setup" src="https://user-images.githubusercontent.com/26389321/172965870-1a8fa913-2597-45f2-9ea2-e22478bab9ca.png">
 </picture>
 
