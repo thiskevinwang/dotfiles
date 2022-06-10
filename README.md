@@ -2,6 +2,13 @@
 
 This is me managing my Dotfiles, Brew Binaries, Mac Apps, VSCode extensions
 
+## What My Setup Looks Like
+
+<time datetime="2022-06-09">June 9, 2022</time>
+
+![CleanShot 2022-06-09 at 20 01 25@2x](https://user-images.githubusercontent.com/26389321/172964366-e67eb0a9-c5f8-41f9-bbd0-bd012d534adb.png)
+
+
 ## Quickstart
 
 ```bash
