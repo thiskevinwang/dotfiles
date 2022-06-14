@@ -14,6 +14,7 @@ brew "autojump"
 brew "aws-cdk"
 brew "awscli"
 brew "bat" # better cat
+brew "bottom" # better top
 brew "cfssl"
 brew "cmake"
 brew "deno"
