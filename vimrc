@@ -3,7 +3,7 @@
 "----------------------------------------------------------------------
 "
 call plug#begin()
-" For everforest colorscheme to work, make sure it's at thhe top of the plugin
+" For everforest colorscheme to work, make sure it's at the top of the plugin
 " list
 Plug 'sainnhe/everforest'
 " For vim-colors-github to work, make sure it's at the top of the plugin list
@@ -38,8 +38,10 @@ if has('nvim')
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
 	Plug 'rcarriga/nvim-notify'
+	Plug 'f-person/auto-dark-mode.nvim'
 endif
 Plug 'kristijanhusak/vim-simple-notifications'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " keep cursor as a block during insert mode
@@ -69,7 +71,7 @@ if has('termguicolors')
 endif
 
 " For dark version.
-set background=dark
+" set background=light
 
 " For light version.
 " set background=light
@@ -79,7 +81,7 @@ set background=dark
 " Set vim theme to everforest
 "-------------------------------------------------------------
 if has('nvim')
-	colorscheme github_dark
+	colorscheme github_dark " github_light | github_dark
 else
 	let g:everforest_background = 'hard'
 	colorscheme everforest
@@ -90,7 +92,7 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 " No Arrows, only rectangles — https://github.com/vim-airline/vim-airline/issues/1688
 let g:airline_powerline_fonts = 1
-"let g:airline_theme='github'
+"let g:airline_theme='base16_google_dark'
 "let g:airline_theme='angr'
 let g:airline_theme='violet'
 
@@ -211,3 +213,57 @@ endif
 "      > Action Send Text with “vim” Special Chars
 "        example: ⌘j -> \<C-j>
 " 2. Specify the mapping in .vimrc as usual
+"
+" "-------------------------------------------------------------
+" " https://github.com/neoclide/coc.nvim
+"
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
