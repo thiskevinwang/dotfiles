@@ -1,9 +1,16 @@
 [alias]
-  prettylog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  default = !git checkout $(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+	prettylog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	default = !git checkout $(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+	contains = "! f() { \
+		sha_1=$(git show-ref refs/tags/$1 -s | head -n1); \
+		git branch --contains $sha_1 -a | rg -e \"(/release/|main)\"; \
+    }; f"
+	e = "! f() { \
+	  echo $1; \
+	}; f"
 
 [color]
-  ui = true
+	ui = true
 
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
