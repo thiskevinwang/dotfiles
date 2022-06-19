@@ -17,6 +17,7 @@ brew "bat" # better cat
 brew "bottom" # better top
 brew "cfssl"
 brew "cmake"
+brew "dark-mode"
 brew "deno"
 brew "dog"
 brew "fnm" # Node version manager
