@@ -33,6 +33,7 @@ Plug 'prettier/vim-prettier', { 'do': 'npm i' }
 Plug 'cespare/vim-toml', { 'branch': 'main' }
 Plug 'github/copilot.vim'
 Plug 'sindrets/diffview.nvim'
+Plug 'preservim/nerdcommenter'
 if has('nvim')
 	Plug 'akinsho/toggleterm.nvim',{ 'tag': 'v2.*' }
 	Plug 'nvim-lua/plenary.nvim'
@@ -102,22 +103,13 @@ let g:airline_theme='violet'
 
 " start up notification
 "
-call notifications#info([
-			\"🐶 Welcome to nvim!",
-			\"ℹ️  Note: Leader is (\\)",
-			\"",
-			\"Useful cmds:",
-			\"<leader>ff: Telescope find file",
-			\"<leader>fg: Telescope live_grep",
-			\"<C-\\>: ToggleTerm",
-			\"<C-f,b,n,p>: Switch splits",
-			\])
-
-" Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+"call notifications#info([
+"			\"🐶 Welcome to nvim!",
+"			\"ℹ️  Note: Leader is (\\)",
+"			\"",
+"			\"",
+"			\"Useful cmds:",
+vmap ÷ <plug>NERDCommenterToggle<CR>gv
 
 
 "-------------------------------------------------------------
@@ -135,12 +127,12 @@ autocmd VimEnter * if argc() == 1 && has('vim') && isdirectory(argv()[0]) && !ex
 autocmd VimEnter * if argc() == 1 && has('nvim') && isdirectory(argv()[0]) && !exists('s:std_in') |
 			\ execute 'NvimTreeOpen' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 "-- auto close nvim-tree if last window is closed ------------
-autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+"autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 "-------------------------------------------------------------
 
 if has('nvim')
 	lua require'nvim-tree'.setup {}
-	nnoremap <C-n> :NvimTreeToggle<CR>
+	"nnoremap <C-n> :NvimTreeToggle<CR>
 	nnoremap <leader>r :NvimTreeRefresh<CR>
 	nnoremap <leader>n :NvimTreeFindFile<CR>
 else
@@ -150,15 +142,6 @@ else
 	" nnoremap <C-f> :NERDTreeFind<CR>
 endif
 
-
-" Relies on iTerm mapping of ⌘j to \<C-j>
-" Open terminal; Like VScode behavior
-if has('nvim')
-	nnoremap <C-\> :ToggleTerm<CR>
-	tnoremap <C-\> <C-\><C-n><C-W>k
-else
-	nnoremap <C-j> :term<CR>
-endif
 
 " Ctrl+d forward-delete in INSERT mode
 inoremap <C-d> <Del>
@@ -190,30 +173,6 @@ if has('nvim')
 	tnoremap <C-v><Esc> <Esc>
 endif
 
-" Notes
-" [Ctrl-w w] swaps between editor & terminal windows
-" [Ctrl-d]   in terminal, closes terminal
-"
-" Resizing buffer splits
-" [Ctrl-w =] makes splits equal size
-" [Ctrl-w -] decreases current split by 1
-" [Ctrl-w +] increases current split by 1
-" [Ctrl-w _] maximizes current split
-" [Ctrl-w :resize 20] resizes current split to the specified height
-"
-"
-" Scrolling in terminal
-" [Ctrl-w Shift-n] pauses terminal; You can navigate now
-"   [i] resumes terminal
-"
-" Mapping mac command key (⌘) — 2 step process
-" 1. Specify a Keyboard Shortcut in iTerm2
-"    > Preferences > Profiles > Keys
-"      > Keyboard Shortcut: ⌘j
-"      > Action Send Text with “vim” Special Chars
-"        example: ⌘j -> \<C-j>
-" 2. Specify the mapping in .vimrc as usual
-"
 " "-------------------------------------------------------------
 " " https://github.com/neoclide/coc.nvim
 "
@@ -234,7 +193,18 @@ endfunction
 " Use <c-space> to trigger completion.
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
-else
+  inoremap <silent><expr> <c-@> coc#refresh()
+
+	" Make <CR> auto-select the first completion item and notify coc.nvim to
+	" format on enter, <cr> could be remapped by other vim plugin
+	inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+								\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+	" Use `[g` and `]g` to navigate diagnostics
+	" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+	nmap <silent> [g <Plug>(coc-diagnostic-prev)
+	nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
