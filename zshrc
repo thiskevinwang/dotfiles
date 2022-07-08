@@ -1,5 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/zshrc.pre.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # Ensure brew can be found
 # Issue seen on m1 max mbp
 [[ -f /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
@@ -13,6 +13,8 @@ export GPG_TTY=$(tty)
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/kevin/.oh-my-zsh"
 
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     aws
@@ -25,7 +27,13 @@ plugins=(
 )
 
 # node repl
-alias repl="NODE_PATH=$(npm root -g) node"
+# - this WARNS
+# alias repl="NODE_PATH=$(npm root -g) node"
+# - use this instead
+alias repl="NODE_PATH=$(npm root --location=global) node"
+
+alias dm="dark-mode"
+
 
 # deno
 export PATH="$HOME/.deno/bin:$PATH"
@@ -34,6 +42,8 @@ export PATH="$HOME/.deno/bin:$PATH"
 export PATH=$PATH:$(go env GOPATH)/bin
 # GOPATH
 export GOPATH=$(go env GOPATH)
+
+alias waypoint=$GOPATH/bin/waypoint
 
 export AWS_PAGER=""
 
@@ -160,4 +170,4 @@ function get_ghcr_token() {
 complete -o nospace -C /Users/kevin/go/bin/waypoint waypoint
 
 # Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/zshrc.post.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
