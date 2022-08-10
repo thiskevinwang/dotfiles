@@ -1,5 +1,9 @@
 # Fig pre block. Keep at the top of this file.
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
+
+# Rebind "Ctrl+f" — https://github.com/withfig/fig/issues/1583
+export FIG_WORKFLOWS_KEYBIND=""
+
 # Ensure brew can be found
 # Issue seen on m1 max mbp
 [[ -f /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
@@ -164,7 +168,23 @@ function aws_config_clear() {
 }
 
 function get_ghcr_token() {
+	# check 1password signin status
+	EXIT_CODE=0
+	op account get > /dev/null 2>&1 || EXIT_CODE=$?
+	if [ $EXIT_CODE > 0 ]; then
+		eval $(op signin)
+	fi
 	echo $(op item get "github" --format=json --fields label=CR_PAT | jq -r ".value")
+}
+
+function get_gh_token() {
+	# check 1password signin status
+	EXIT_CODE=0
+	op account get > /dev/null 2>&1 || EXIT_CODE=$?
+	if [ $EXIT_CODE > 0 ]; then
+		eval $(op signin)
+	fi
+	echo $(op item get "github" --format=json --fields label=PAT | jq -r ".value")
 }
 
 complete -o nospace -C /Users/kevin/go/bin/waypoint waypoint
