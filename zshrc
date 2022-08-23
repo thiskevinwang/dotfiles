@@ -47,7 +47,7 @@ export PATH=$PATH:$(go env GOPATH)/bin
 # GOPATH
 export GOPATH=$(go env GOPATH)
 
-alias waypoint=$GOPATH/bin/waypoint
+# alias waypoint=$GOPATH/bin/waypoint
 
 export AWS_PAGER=""
 
@@ -171,7 +171,7 @@ function get_ghcr_token() {
 	# check 1password signin status
 	EXIT_CODE=0
 	op account get > /dev/null 2>&1 || EXIT_CODE=$?
-	if [ $EXIT_CODE > 0 ]; then
+	if [ $EXIT_CODE -gt 0 ]; then
 		eval $(op signin)
 	fi
 	echo $(op item get "github" --format=json --fields label=CR_PAT | jq -r ".value")
@@ -181,7 +181,7 @@ function get_gh_token() {
 	# check 1password signin status
 	EXIT_CODE=0
 	op account get > /dev/null 2>&1 || EXIT_CODE=$?
-	if [ $EXIT_CODE > 0 ]; then
+	if [ $EXIT_CODE -gt 0 ]; then
 		eval $(op signin)
 	fi
 	echo $(op item get "github" --format=json --fields label=PAT | jq -r ".value")
