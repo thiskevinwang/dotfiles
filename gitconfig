@@ -54,7 +54,7 @@
 [core]
 	editor = nvim
 	page = false
-	excludesfile = /Users/kevin/.gitignore_global
+	excludesFile = ~/.gitignore
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -67,3 +67,5 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
+[init]
+	defaultBranch = main
