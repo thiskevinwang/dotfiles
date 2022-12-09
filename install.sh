@@ -218,3 +218,6 @@ if [[ $? != 0 ]] ; then
   gpg-agent --daemon
   wait
 fi
+
+# Set global gitignore
+git config --global core.excludesFile '~/.gitignore'
