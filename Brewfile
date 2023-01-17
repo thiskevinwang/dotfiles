@@ -23,6 +23,7 @@ brew "cmake"
 brew "dark-mode"
 brew "deno"
 brew "dog"
+brew "exa" # https://github.com/ogham/exa (Rust "ls")
 brew "fnm" # Node version manager
 brew "fzf"
 brew "gh" # GitHub CLI
