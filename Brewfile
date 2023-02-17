@@ -18,6 +18,7 @@ brew "azure-cli"
 brew "azure-functions-core-tools@4"
 brew "bat" # better cat
 brew "bottom" # better top
+brew "certigo"
 brew "cfssl"
 brew "cmake"
 brew "dark-mode"
