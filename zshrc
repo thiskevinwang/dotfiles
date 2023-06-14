@@ -63,8 +63,6 @@ source <(kubectl completion zsh)
 alias k=kubectl
 complete -F __start_kubectl k
 
-source <(minikube completion zsh)
-
 # 1password cli (op)
 # https://developer.1password.com/docs/cli/reference/commands/completion/
 eval "$(op completion zsh)"; compdef _op op
