@@ -1,12 +1,14 @@
 # Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
-
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Rebind "Ctrl+f" — https://github.com/withfig/fig/issues/1583
 export FIG_WORKFLOWS_KEYBIND=""
 
 # Ensure brew can be found
 # Issue seen on m1 max mbp
 [[ -f /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
+
+# Check for ARM or Intel arch
+[[ $(uname -m) == "arm64" ]] && export IS_ARM=true || export IS_ARM=false
 
 # Setup TTY for GPG
 export GPG_TTY=$(tty)
@@ -21,12 +23,9 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    aws
     fzf
     git
     zsh-completions
-    docker
-    docker-compose
     zsh-autosuggestions
 )
 
@@ -39,6 +38,19 @@ alias repl="NODE_PATH=$(npm root --location=global) node"
 alias dm="dark-mode"
 
 
+# OpenAI
+. "/Users/kevin/.openai/credentials"
+
+function ask() {
+  mods -f "$1" | glow
+}
+# ask "What week of the year is $(DATE)?"
+# 
+# The week of the year for Sat Jun 24 10:08:53 EDT 2023 is 25. 
+function askplain {
+  mods -f "$1"
+}
+
 # deno
 export PATH="$HOME/.deno/bin:$PATH"
 
@@ -47,11 +59,8 @@ export PATH=$PATH:$(go env GOPATH)/bin
 # GOPATH
 export GOPATH=$(go env GOPATH)
 
-# alias waypoint=$GOPATH/bin/waypoint
-
 export AWS_PAGER=""
 
-autoload -U compinit && compinit
 
 # Note this needs to come after plugins=(...)
 # in order for plugins to load.
@@ -62,10 +71,6 @@ source $ZSH/oh-my-zsh.sh
 source <(kubectl completion zsh)
 alias k=kubectl
 complete -F __start_kubectl k
-
-# 1password cli (op)
-# https://developer.1password.com/docs/cli/reference/commands/completion/
-eval "$(op completion zsh)"; compdef _op op
 
 # Starship Prompt
 export STARSHIP_CONFIG="$HOME/starship.toml"
@@ -87,14 +92,27 @@ export PATH="$HOME/.amplify/bin:$PATH"
 # The next line updates PATH for Netlify's Git Credential Helper.
 if [ -f '/Users/kevin/.netlify/helper/path.zsh.inc' ]; then source '/Users/kevin/.netlify/helper/path.zsh.inc'; fi
 
+# Terraform
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
+alias tf=terraform
+
+# TAB COMPLETIONS — Semi redundant given Fig's completion
+## Waypoint
+complete -o nospace -C /opt/homebrew/bin/waypoint waypoint
+## Terraform
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+## Nomad
+complete -o nospace -C /opt/homebrew/bin/nomad nomad
 
 # fnm
 eval "$(fnm env --use-on-cd)"
 
 # Python
-alias python=/usr/local/bin/python3
+# alias python=/usr/local/bin/python3
+alias python=/opt/homebrew/bin/python3
+alias pip=/opt/homebrew/bin/pip3
+alias ls=/opt/homebrew/bin/exa
+alias cat=/opt/homebrew/bin/bat
 
 # Ruby
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
@@ -122,8 +140,6 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 # Android
 export ANDROID_SDK=/Users/kevin/Library/Android/sdk
 
-# Terraform
-alias tf=terraform
 
 # function
 function aws_config() {
@@ -185,7 +201,8 @@ function get_gh_token() {
 	echo $(op item get "github" --format=json --fields label=PAT | jq -r ".value")
 }
 
-complete -o nospace -C /Users/kevin/go/bin/waypoint waypoint
+# wasmedge shell setup
+. "/Users/kevin/.wasmedge/env"
 
 # Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
