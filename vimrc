@@ -23,7 +23,7 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'b4b4r07/vim-hcl'
-
+Plug 'LnL7/vim-nix'
 Plug 'scrooloose/nerdtree'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
@@ -44,6 +44,11 @@ endif
 Plug 'kristijanhusak/vim-simple-notifications'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+" For https://vimawesome.com/plugin/the-nerd-commenter
+filetype plugin on
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
 
 " keep cursor as a block during insert mode
 set guicursor=i:block
