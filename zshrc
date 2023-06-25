@@ -39,7 +39,7 @@ alias dm="dark-mode"
 
 
 # OpenAI
-. "/Users/kevin/.openai/credentials"
+. "$HOME/.openai/credentials"
 
 function ask() {
   mods -f "$1" | glow
