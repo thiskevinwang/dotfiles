@@ -63,6 +63,7 @@ naumovs.color-highlight
 Orta.vscode-jest
 peterj.proto
 PKief.material-icon-theme
+Postman.postman-for-vscode
 Prisma.prisma
 pucelle.vscode-css-navigation
 qrti.funclist
