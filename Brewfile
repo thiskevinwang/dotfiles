@@ -20,6 +20,8 @@ brew "bat" # better cat
 brew "bottom" # better top
 brew "certigo"
 brew "cfssl"
+brew "charmbracelet/tap/mods"
+brew "glow"
 brew "cmake"
 brew "dark-mode"
 brew "deno"
