@@ -6,7 +6,6 @@ continuation_prompt = "▶▶"
 #format = """$all"""
 
 format = """
-[](#26235B)\
 $kubernetes\
 [](#26235B bg:#812878)\
 $directory\
@@ -24,9 +23,7 @@ $gcloud\
 [](fg:#E4682A bg:#F69824)\
 $aws\
 $terraform\
-[](fg:#F69824)\
-$fill $cmd_duration
-${custom.waypoint}└─ $character
+$fill $cmd_duration\
 """
 
 # [](fg:#fdf6e3 bg:#F69824)\
@@ -132,25 +129,8 @@ format = "[🏎💨 $version$workspace ]($style)"
 
 [cmd_duration]
 min_time = 100
-format = "[](fg:black)[ $duration](bold bg:black fg:white)[](fg:black)"
+format = "[ $duration](bold bg:black fg:white)\n"
 
 [fill]
 symbol = " "
-
-[custom.waypoint]
-detect_files = ["waypoint.hcl"]
-command = """
-waypoint status -json \
-| jq -r '
-    [
-        { Name: .Project.Name, App:.Applications[].App, Release: .Applications[].ReleaseStatus }
-        | to_entries[]
-        | [ .key, .value ]
-        | join(": ")
-    ]
-    | join("  ")'
-"""
-symbol = "wp"
-style = "fg:#14c6cb bg:#252937"
-format = "├─ [](fg:#252937)[$symbol  $output]($style)[](fg:#252937)\n"
 
