@@ -4,10 +4,9 @@ This is me managing my Dotfiles, Brew Binaries, Mac Apps, VSCode extensions
 
 ## What My Setup Looks Like
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/26389321/172965684-4902db08-549d-4448-9d88-d8d0440d3311.png">
-  <img alt="Screenshot of neovim setup" src="https://user-images.githubusercontent.com/26389321/172965870-1a8fa913-2597-45f2-9ea2-e22478bab9ca.png">
-</picture>
+![CleanShot 2023-10-09 at 08 33 30@2x](https://github.com/thiskevinwang/dotfiles/assets/26389321/d753b088-1519-4fb7-b838-4505bbe39ec5#gh-light-mode-only)
+![CleanShot 2023-10-09 at 08 34 03@2x](https://github.com/thiskevinwang/dotfiles/assets/26389321/7a9b20d3-016f-47e2-9c1f-104a411fb2e4#gh-dark-mode-only)
+
 
 ## Quickstart
 
