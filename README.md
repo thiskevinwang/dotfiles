@@ -7,6 +7,9 @@ This is me managing my Dotfiles, Brew Binaries, Mac Apps, VSCode extensions
 ![CleanShot 2023-10-09 at 08 33 30@2x](https://github.com/thiskevinwang/dotfiles/assets/26389321/d753b088-1519-4fb7-b838-4505bbe39ec5#gh-light-mode-only)
 ![CleanShot 2023-10-09 at 08 34 03@2x](https://github.com/thiskevinwang/dotfiles/assets/26389321/7a9b20d3-016f-47e2-9c1f-104a411fb2e4#gh-dark-mode-only)
 
+> [!WARNING]
+>
+> VSCode and iTerm are my two daily tools. I no longer use vim/nvim, nor never really understood how to get around efficiently, so all vim settings here will not really be maintained.
 
 ## Quickstart
 
@@ -17,6 +20,8 @@ Install Homebrew[^brew]
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
+
+(You might need a new terminal session for `brew` to be detected.)
 
 ```bash
 git clone https://github.com/thiskevinwang/dotfiles.git
