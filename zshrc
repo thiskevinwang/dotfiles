@@ -37,19 +37,13 @@ alias repl="NODE_PATH=$(npm root --location=global) node"
 
 alias dm="dark-mode"
 
+# Fix this error:
+# complete:13: command not found: compdef
+autoload -Uz compinit
+compinit
 
 # OpenAI
 . "$HOME/.openai/credentials"
-
-function ask() {
-  mods -f "$1" | glow
-}
-# ask "What week of the year is $(DATE)?"
-# 
-# The week of the year for Sat Jun 24 10:08:53 EDT 2023 is 25. 
-function askplain {
-  mods -f "$1"
-}
 
 # deno
 export PATH="$HOME/.deno/bin:$PATH"
@@ -195,8 +189,6 @@ function get_gh_token() {
 	echo $(op item get "github" --format=json --fields label=PAT | jq -r ".value")
 }
 
-# wasmedge shell setup
-. "/Users/kevin/.wasmedge/env"
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
