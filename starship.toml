@@ -1,3 +1,8 @@
+# https://starship.rs/config/#configuration
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
 $username\
 $hostname\
