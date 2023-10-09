@@ -1,136 +1,46 @@
-# Don't print a new line at the start of the prompt
-add_newline = false
-command_timeout = 1200 # ms
-continuation_prompt = "▶▶"
-# A minimal left prompt
-#format = """$all"""
-
 format = """
-$kubernetes\
-[](#26235B bg:#812878)\
+$username\
+$hostname\
 $directory\
-[](fg:#812878 bg:#A22160 )\
 $git_branch\
-[](fg:#fdf6e3 bg:#A22160)\
+$git_state\
 $git_status\
-[](fg:#A22160 bg:#CC2336)\
-$golang\
-$nodejs\
-$rust\
-$swift\
-[](fg:#CC2336 bg:#E4682A)\
-$gcloud\
-[](fg:#E4682A bg:#F69824)\
-$aws\
-$terraform\
-$fill $cmd_duration\
-"""
-
-# [](fg:#fdf6e3 bg:#F69824)\
-# move the rest of the prompt to the right
-# right_format = """$all"""
-
-# Replace the "❯" symbol in the prompt with "Λ"
-[character]      # The name of the module we are configuring is "character"
-success_symbol = "[λ](bold green)"
-error_symbol = "[χ](bold red)"
-vicmd_symbol = "[V](bold green)"
-
-# [git_status]
-# format = '([ \[$all_status$ahead_behind\]]($style) )'
-# ahead = "${count}"
-# diverged = "⇕${behind_count} ${ahead_count}"
-# behind = "${count}"
-# modified = "${count} "
-# staged = "${count} "
-
-[kubernetes]
-symbol = "☸ "
-style = "bg:#26235B fg:#fdf6e3"
-format = '[$symbol$context(\($namespace\)) ]($style)'
-disabled = false
-[kubernetes.context_aliases]
-"gke_.*_(?P<var_cluster>[\\w-]+)" = "$var_cluster"
+$cmd_duration\
+$line_break\
+$python\
+$character"""
 
 [directory]
-style = "bg:#812878 fg:#fdf6e3"
-format = "[  $path ]($style)"
-truncation_length = 3
-truncation_symbol = "…/"
+style = "blue"
+
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
 
 [git_branch]
-symbol = ""
-style = "bg:#A22160 fg:#fdf6e3"
-# truncation_length = 7
-truncation_symbol = "…/"
-format = '[ $symbol $branch]($style)'
+format = "[$branch]($style)"
+style = "bright-black"
 
 [git_status]
-style = "bg:#A22160 fg:#fdf6e3"
-ahead = "${count}"
-diverged = "⇕${behind_count} ${ahead_count}"
-behind = "${count}"
-modified = "${count} "
-staged = "${count} "
-format = '([\[$all_status$ahead_behind\] ]($style))'
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
 
-[golang]
-symbol = ""
-style = "bg:#CC2336 fg:#fdf6e3"
-format = '[ $symbol $version ]($style)'
-
-[java]
-symbol = " "
-style = "bg:#CC2336 fg:#fdf6e3"
-format = '[ $symbol $version ]($style)'
-
-[nodejs]
-symbol = ""
-style = "bg:#CC2336 fg:#fdf6e3"
-# style = "bg:#303030 fg:#68A063 bold"
-format = '[ $symbol $version ]($style)'
-
-[rust]
-symbol = ""
-style = "bg:#CC2336 fg:#fdf6e3"
-format = '[ $symbol $version ]($style)'
-
-[package]
-symbol = " "
-
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
-
-[python]
-symbol = " "
-
-[ruby]
-symbol = " "
-
-[swift]
-symbol = "ﯣ "
-
-[aws]
-symbol = " "
-style = "bg:#F69824 fg:#fdf6e3"
-format = '[ $symbol$region ]($style)'
-
-[gcloud]
-symbol = " "
-style = "bg:#E4682A fg:#fdf6e3"
-format = '[ $symbol$account($region)]($style)'
-
-[terraform]
-style = "bg:#F69824 fg:#fdf6e3"
-format = "[🏎💨 $version$workspace ]($style)"
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
 
 [cmd_duration]
-min_time = 100
-format = "[ $duration](bold bg:black fg:white)\n"
+format = "[$duration]($style) "
+style = "yellow"
 
-[fill]
-symbol = " "
-
+[python]
+format = "[$virtualenv]($style) "
+style = "bright-black"

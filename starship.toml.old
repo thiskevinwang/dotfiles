@@ -1,0 +1,165 @@
+# Don't print a new line at the start of the prompt
+add_newline = false
+command_timeout = 1200 # ms
+# A minimal left prompt
+#format = """$all"""
+
+format = """
+[](#26235B)\
+$kubernetes\
+[](#26235B bg:#812878)\
+$directory\
+[](fg:#812878 bg:#A22160 )\
+$git_branch$git_commit\
+[](fg:#fdf6e3 bg:#A22160)\
+$git_status\
+[](fg:#A22160 bg:#CC2336)\
+$golang\
+$nodejs\
+$rust\
+$swift\
+[](fg:#CC2336 bg:#E4682A)\
+$gcloud\
+[](fg:#E4682A bg:#F69824)\
+$aws\
+$terraform\
+[](fg:#F69824)\
+$fill $cmd_duration
+└─ $character
+"""
+#${custom.waypoint}└─ $character
+
+# [](fg:#fdf6e3 bg:#F69824)\
+# move the rest of the prompt to the right
+# right_format = """$all"""
+
+# Replace the "❯" symbol in the prompt with "Λ"
+[character]      # The name of the module we are configuring is "character"
+success_symbol = "[λ](bold green)"
+error_symbol = "[χ](bold red)"
+vicmd_symbol = "[V](bold green)"
+
+# [git_status]
+# format = '([ \[$all_status$ahead_behind\]]($style) )'
+# ahead = "${count}"
+# diverged = "⇕${behind_count} ${ahead_count}"
+# behind = "${count}"
+# modified = "${count} "
+# staged = "${count} "
+
+[kubernetes]
+symbol = "☸ "
+style = "bg:#26235B fg:#fdf6e3"
+format = '[$symbol]($style)'
+# format = '[$symbol$context(\($namespace\)) ]($style)'
+disabled = false
+[kubernetes.context_aliases]
+"gke_.*_(?P<var_cluster>[\\w-]+)" = "$var_cluster"
+
+[directory]
+style = "bg:#812878 fg:#fdf6e3"
+format = "[  $path ]($style)"
+truncation_length = 1
+truncation_symbol = "…/"
+
+[git_branch]
+symbol = ""
+style = "bg:#A22160 fg:#fdf6e3"
+# truncation_length = 7
+truncation_symbol = "…/"
+format = '[ $symbol $branch]($style)'
+
+[git_commit]
+style = "bg:#A22160 fg:#fdf6e3"
+format = "[\\($hash$tag\\)]($style)"
+commit_hash_length = 7
+only_detached = false
+tag_symbol = "🔖"
+tag_disabled = false
+
+[git_status]
+style = "bg:#A22160 fg:#fdf6e3"
+ahead = "${count}"
+diverged = "⇕${behind_count} ${ahead_count}"
+behind = "${count}"
+modified = "${count} "
+staged = "${count} "
+format = '([\[$all_status$ahead_behind\] ]($style))'
+
+[golang]
+symbol = ""
+style = "bg:#CC2336 fg:#fdf6e3"
+format = '[ $symbol $version ]($style)'
+
+[java]
+symbol = " "
+style = "bg:#CC2336 fg:#fdf6e3"
+format = '[ $symbol $version ]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:#CC2336 fg:#fdf6e3"
+# style = "bg:#303030 fg:#68A063 bold"
+format = '[ $symbol $version ]($style)'
+
+[rust]
+symbol = ""
+style = "bg:#CC2336 fg:#fdf6e3"
+format = '[ $symbol $version ]($style)'
+
+[package]
+symbol = " "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[swift]
+symbol = "ﯣ "
+
+[aws]
+symbol = " "
+style = "bg:#F69824 fg:#fdf6e3"
+format = '[ $symbol$region ]($style)'
+
+[gcloud]
+symbol = " "
+style = "bg:#E4682A fg:#fdf6e3"
+format = '[ $symbol$account($region)]($style)'
+
+[terraform]
+style = "bg:#F69824 fg:#fdf6e3"
+format = "[🏎💨 $version$workspace ]($style)"
+
+[cmd_duration]
+min_time = 100
+format = "[](fg:black)[ $duration](bold bg:black fg:white)[](fg:black)"
+
+[fill]
+symbol = " "
+
+[custom.waypoint]
+detect_files = ["waypoint.hcl"]
+command = """
+waypoint status -json \
+| jq -r '
+    [
+        { Name: .Project.Name, App:.Applications[].App, Release: .Applications[].ReleaseStatus }
+        | to_entries[]
+        | [ .key, .value ]
+        | join(": ")
+    ]
+    | join("  ")'
+"""
+symbol = "wp"
+style = "fg:#14c6cb bg:#252937"
+format = "├─ [](fg:#252937)[$symbol  $output]($style)[](fg:#252937)\n"
+
