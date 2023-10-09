@@ -200,6 +200,13 @@ powerline_fonts
 brew_bundle
 vscode_extensions
 
+# Install oh-my-zsh - https://ohmyz.sh/
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Install starship - https://starship.rs/guide/#%F0%9F%9A%80-installation
+curl -sS https://starship.rs/install.sh | sh
+
+
 # gpg (depends on gnupg being installed)
 echo "🔑 GPG"
 

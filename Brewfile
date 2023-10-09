@@ -48,7 +48,6 @@ brew "ripgrep" # 'rg' better grep
 brew "ruby"
 brew "rbenv"
 brew "ruby-build"
-brew "starship"
 brew "tree"
 brew "vercel-cli"
 brew "watch"
