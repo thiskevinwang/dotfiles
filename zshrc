@@ -66,12 +66,6 @@ export AWS_PAGER=""
 # in order for plugins to load.
 source $ZSH/oh-my-zsh.sh
 
-# Kubectl
-# https://kubernetes.io/docs/tasks/tools/install-kubectl/#optional-kubectl-configurations
-source <(kubectl completion zsh)
-alias k=kubectl
-complete -F __start_kubectl k
-
 # Starship Prompt
 export STARSHIP_CONFIG="$HOME/starship.toml"
 eval "$(starship init zsh)"
@@ -206,3 +200,10 @@ function get_gh_token() {
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+# bun completions
+[ -s "/Users/kevin/.bun/_bun" ] && source "/Users/kevin/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
