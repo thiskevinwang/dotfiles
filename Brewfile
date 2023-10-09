@@ -78,6 +78,7 @@ cask "raycast"
 cask "slack"
 #cask "steam"
 cask "tableplus"
+cask "tuple" # tuple.app
 cask "visual-studio-code"
 cask "zoom"
 
