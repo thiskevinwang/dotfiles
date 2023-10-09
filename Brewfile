@@ -60,6 +60,7 @@ brew "yq" # jq, but for YAML
 # Apps
 cask "1password"
 cask "1password-cli"
+cask "arc"
 cask "cleanshot"
 cask "discord"
 cask "docker"
