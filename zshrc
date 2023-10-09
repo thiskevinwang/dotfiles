@@ -45,6 +45,9 @@ compinit
 # OpenAI
 . "$HOME/.openai/credentials"
 
+# ensure brew is in path
+export PATH=/opt/homebrew/bin:$PATH
+
 # deno
 export PATH="$HOME/.deno/bin:$PATH"
 
