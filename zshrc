@@ -85,8 +85,6 @@ autoload -U +X bashcompinit && bashcompinit
 alias tf=terraform
 
 # TAB COMPLETIONS — Semi redundant given Fig's completion
-## Waypoint
-complete -o nospace -C /opt/homebrew/bin/waypoint waypoint
 ## Terraform
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 ## Nomad
