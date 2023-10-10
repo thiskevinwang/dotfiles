@@ -55,6 +55,7 @@ brew "watchman"
 brew "webp"
 brew "yarn"
 brew "yq" # jq, but for YAML
+brew "zsh-autosuggestions" # https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md
 
 # Apps
 cask "1password"
