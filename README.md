@@ -33,6 +33,22 @@ sh install.sh
 
 Run this to install all the things.
 
+## Vim/Neovim
+
+To avoid vim errors / noise, for example, when using the interactive `git rebase` which runs in neovim for me, run:
+
+```console
+❯ nvim
+
+this starts a neovim session
+
+❯ :PlugInstall
+
+This installs all the specified plugins
+```
+
+- [ ] TODO: skip this manual step 👆
+
 ## VSCode
 
 **TODOS**
