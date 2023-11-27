@@ -36,6 +36,7 @@ brew "goreleaser"
 brew "hashicorp/tap/terraform"
 # brew "helm"
 brew "jq"
+brew "mike-engel/jwt-cli/jwt-cli"
 # brew "kubectl"
 # brew "kubectx"
 brew "mas" # Mac App Store CLI
