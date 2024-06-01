@@ -1,8 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-# Rebind "Ctrl+f" — https://github.com/withfig/fig/issues/1583
-export FIG_WORKFLOWS_KEYBIND=""
-
 # Ensure brew can be found
 # Issue seen on m1 max mbp
 [[ -f /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
@@ -41,6 +36,9 @@ alias dm="dark-mode"
 # complete:13: command not found: compdef
 autoload -Uz compinit
 compinit
+
+# 1password
+eval "$(op completion zsh)"; compdef _op op
 
 # OpenAI
 . "$HOME/.openai/credentials"
@@ -87,7 +85,8 @@ if [ -f '/Users/kevin/.netlify/helper/path.zsh.inc' ]; then source '/Users/kevin
 autoload -U +X bashcompinit && bashcompinit
 alias tf=terraform
 
-# TAB COMPLETIONS — Semi redundant given Fig's completion
+# TAB COMPLETIONS
+
 ## Terraform
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 ## Nomad
@@ -131,9 +130,9 @@ export ANDROID_SDK=/Users/kevin/Library/Android/sdk
 
 # function
 function aws_config() {
-		aws_config_clear
+    aws_config_clear
 
-		echo "============"
+    echo "============"
     echo " AWS Config "
     echo "============"
     
@@ -190,12 +189,10 @@ function get_gh_token() {
 }
 
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
 # bun completions
 [ -s "/Users/kevin/.bun/_bun" ] && source "/Users/kevin/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+source /Users/kevin/.config/op/plugins.sh
