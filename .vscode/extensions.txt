@@ -1,7 +1,6 @@
 bbenoist.Nix
 bradlc.vscode-tailwindcss
 bungcip.better-toml
-clinyong.vscode-css-modules
 csstools.postcss
 dbaeumer.vscode-eslint
 donjayamanne.githistory
@@ -16,9 +15,6 @@ GitHub.vscode-pull-request-github
 golang.go
 Goopware.raythis
 GrapeCity.gc-excelviewer
-GraphQL.vscode-graphql
-GraphQL.vscode-graphql-execution
-GraphQL.vscode-graphql-syntax
 Gruntfuggly.todo-tree
 hashicorp.hcl
 hashicorp.terraform
@@ -34,9 +30,6 @@ ms-playwright.playwright
 ms-python.isort
 ms-python.python
 ms-python.vscode-pylance
-ms-toolsai.jupyter
-ms-toolsai.vscode-jupyter-cell-tags
-ms-toolsai.vscode-jupyter-slideshow
 ms-vscode-remote.remote-containers
 ms-vscode-remote.remote-ssh
 ms-vscode-remote.remote-ssh-edit
@@ -45,10 +38,8 @@ ms-vscode.vscode-typescript-next
 ms-vscode.wordcount
 ms-vsliveshare.vsliveshare
 naumovs.color-highlight
-Orta.vscode-jest
 peterj.proto
 PKief.material-icon-theme
-Postman.postman-for-vscode
 pucelle.vscode-css-navigation
 redhat.vscode-commons
 redhat.vscode-xml
@@ -61,13 +52,10 @@ streetsidesoftware.code-spell-checker
 stylelint.vscode-stylelint
 tonka3000.raycast
 twxs.cmake
-Tyriar.lorem-ipsum
 unifiedjs.vscode-mdx
 VisualStudioExptTeam.vscodeintellicode
 vscode-icons-team.vscode-icons
-vunguyentuan.vscode-postcss
 waderyan.gitblame
-withfig.fig
 wix.vscode-import-cost
 xyc.vscode-mdx-preview
 zh9528.file-size
