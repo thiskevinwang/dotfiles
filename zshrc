@@ -101,7 +101,6 @@ eval "$(fnm env --use-on-cd)"
 alias python=/opt/homebrew/bin/python3
 alias pip=/opt/homebrew/bin/pip3
 alias ls=/opt/homebrew/bin/exa
-alias cat=/opt/homebrew/bin/bat
 
 # Ruby
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
