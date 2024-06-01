@@ -17,6 +17,7 @@ brew "awscli"
 brew "azure-cli"
 brew "azure-functions-core-tools@4"
 brew "bat" # better cat
+brew "bazelisk"
 brew "bottom" # better top
 brew "certigo"
 brew "cfssl"
@@ -34,10 +35,7 @@ brew "gnupg"
 brew "go"
 brew "goreleaser"
 brew "hashicorp/tap/terraform"
-# brew "helm"
 brew "jq"
-# brew "kubectl"
-# brew "kubectx"
 brew "mas" # Mac App Store CLI
 brew "neovim" # 'nvim'
 brew "node"
@@ -65,18 +63,14 @@ cask "cleanshot"
 cask "discord"
 cask "docker"
 cask "firefox"
-# cask "goland"
 cask "google-chrome"
 cask "iterm2"
 cask "kaleidoscope"
 cask "linear-linear"
-# cask "loom"
 cask "notion"
-# cask "nosql-workbench"
 cask "postman"
 cask "raycast"
 cask "slack"
-#cask "steam"
 cask "tableplus"
 cask "tuple" # tuple.app
 cask "visual-studio-code"
@@ -87,6 +81,5 @@ cask "zoom"
 #mas "Final Cut Pro", id: 424389933
 #mas "Magnet", id: 441258766
 #mas "Xcode", id: 497799835
-#mas "Kaleidoscope 3", id: 1575557335
 # mas "Transporter", id: 1450874784
 
