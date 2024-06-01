@@ -50,6 +50,26 @@ then
 else
   echo "  Cloning $ZSH_AUTOSUGGESTIONS"
   git clone $ZSH_AUTOSUGGESTIONS $ZSH_CUSTOM_DIR
+
+fi
+echo ""
+
+# Install Zsh plugins
+ZSH_AUTOSUGGESTIONS_DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+if [[ -d $ZSH_AUTOSUGGESTIONS_DIR ]]
+then 
+  echo "  ⏩ zsh-autosuggestions dir exists"
+else
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
+echo ""
+
+ZSH_COMPLETIONS_DIR=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
+if [[ -d $ZSH_COMPLETIONS_DIR ]]
+then
+  echo "  ⏩ zsh-completions dir exists"
+else
+  git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
 fi
 echo ""
 
