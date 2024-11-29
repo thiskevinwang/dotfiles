@@ -99,7 +99,6 @@ eval "$(fnm env --use-on-cd)"
 # alias python=/usr/local/bin/python3
 alias python=/opt/homebrew/bin/python3
 alias pip=/opt/homebrew/bin/pip3
-alias ls=/opt/homebrew/bin/exa
 
 # Ruby
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
