@@ -38,6 +38,7 @@ brew "hashicorp/tap/terraform"
 brew "jq"
 brew "mike-engel/jwt-cli/jwt-cli"
 brew "mas" # Mac App Store CLI
+brew "neofetch"
 brew "neovim" # 'nvim'
 brew "node"
 brew "pinentry-mac"
