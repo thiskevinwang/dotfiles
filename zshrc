@@ -195,3 +195,7 @@ function get_gh_token() {
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 source /Users/kevin/.config/op/plugins.sh
+
+# For cURL w/ HTTP3 support
+# https://gist.github.com/xmlking/cff9510dac9281d29390392cbbb033a8
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
