@@ -93,7 +93,7 @@ complete -o nospace -C /opt/homebrew/bin/terraform terraform
 complete -o nospace -C /opt/homebrew/bin/nomad nomad
 
 # fnm
-eval "$(fnm env --use-on-cd)"
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 # Python
 # alias python=/usr/local/bin/python3
