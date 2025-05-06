@@ -20,9 +20,12 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 plugins=(
     fzf
     git
-    zsh-completions
     zsh-autosuggestions
 )
+# Do not load zsh-completions as standard plugin
+# https://github.com/zsh-users/zsh-completions?tab=readme-ov-file#oh-my-zsh
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+
 
 # node repl
 # - this WARNS
