@@ -1,3 +1,4 @@
 .scratch*
 .yalc*
 yalc.lock
+.env.local
