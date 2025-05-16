@@ -48,6 +48,7 @@ brew "ruby"
 brew "rbenv"
 brew "ruby-build"
 brew "tree"
+brew "uv" # python dependency manager https://docs.astral.sh/uv/getting-started/installation/#pypi
 brew "vercel-cli"
 brew "watch"
 brew "watchman"
