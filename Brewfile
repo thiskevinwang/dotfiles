@@ -4,20 +4,14 @@ tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/cask-fonts"
 tap "hashicorp/tap"
-tap "azure/functions"
 
 # Font
 cask "font-fira-code-nerd-font"
 
 # Binaries
-# brew "asciinema"
-# brew "autojump"
 brew "aws-cdk"
 brew "awscli"
-brew "azure-cli"
-brew "azure-functions-core-tools@4"
 brew "bat" # better cat
-brew "bazelisk"
 brew "bottom" # better top
 brew "certigo"
 brew "cfssl"
@@ -25,7 +19,6 @@ brew "charmbracelet/tap/mods"
 brew "glow"
 brew "cmake"
 brew "dark-mode"
-brew "deno"
 brew "dog"
 brew "fnm" # Node version manager
 brew "fzf"
@@ -60,18 +53,16 @@ brew "yq" # jq, but for YAML
 # Apps
 cask "1password"
 cask "1password-cli"
-cask "arc"
 cask "cleanshot"
 cask "discord"
 cask "docker"
 cask "firefox"
+cask "ghostty"
 cask "google-chrome"
-cask "iterm2"
 cask "kaleidoscope"
 cask "linear-linear"
 cask "notion"
 cask "postman"
-cask "raycast"
 cask "slack"
 cask "tableplus"
 cask "tuple" # tuple.app
