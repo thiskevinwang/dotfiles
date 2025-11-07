@@ -26,13 +26,6 @@ plugins=(
 # https://github.com/zsh-users/zsh-completions?tab=readme-ov-file#oh-my-zsh
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
-
-# node repl
-# - this WARNS
-# alias repl="NODE_PATH=$(npm root -g) node"
-# - use this instead
-alias repl="NODE_PATH=$(npm root --location=global) node"
-
 alias dm="dark-mode"
 
 # Fix this error:
@@ -49,8 +42,6 @@ eval "$(op completion zsh)"; compdef _op op
 # ensure brew is in path
 export PATH=/opt/homebrew/bin:$PATH
 
-# deno
-export PATH="$HOME/.deno/bin:$PATH"
 
 # go-bindata
 export PATH=$PATH:$(go env GOPATH)/bin
@@ -64,10 +55,6 @@ export AWS_PAGER=""
 # in order for plugins to load.
 source $ZSH/oh-my-zsh.sh
 
-# Starship Prompt
-export STARSHIP_CONFIG="$HOME/starship.toml"
-eval "$(starship init zsh)"
-
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -76,13 +63,6 @@ eval "$(starship init zsh)"
 # unsetopt BEEP
 # Turn off autocomplete beeps
 unsetopt LIST_BEEP
-
-
-# Added by Amplify CLI binary installer
-export PATH="$HOME/.amplify/bin:$PATH"
-
-# The next line updates PATH for Netlify's Git Credential Helper.
-if [ -f '/Users/kevin/.netlify/helper/path.zsh.inc' ]; then source '/Users/kevin/.netlify/helper/path.zsh.inc'; fi
 
 # Terraform
 autoload -U +X bashcompinit && bashcompinit
@@ -129,68 +109,6 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 # Android
 export ANDROID_SDK=/Users/kevin/Library/Android/sdk
 
-
-# function
-function aws_config() {
-    aws_config_clear
-
-    echo "============"
-    echo " AWS Config "
-    echo "============"
-    
-    access_key_id_label="Access key ID"
-    secret_access_key_label="Secret access key"
-
-    eval $(op signin)
-
-    AWS_ACCESS_KEY_ID=$(op item get "AWS" --fields label=$access_key_id_label)
-    AWS_SECRET_ACCESS_KEY=$(op item get "AWS" --fields label=$secret_access_key_label)
-    
-    if [ -e ~/.aws/credentials ]; then
-        rm ~/.aws/credentials
-    fi
-
-
-    eval $(export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID)
-    eval $(export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY)
-
-    aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-    aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-
-    echo "✅"
-}
-
-function aws_config_clear() {
-    echo "=================="
-    echo " AWS Config Clear "
-    echo "=================="
-    unset AWS_ACCESS_KEY_ID
-    unset AWS_SECRET_ACCESS_KEY
-    unset AWS_SESSION_TOKEN
-    unset AWS_SESSION_EXPIRATION
-}
-
-function get_ghcr_token() {
-	# check 1password signin status
-	EXIT_CODE=0
-	op account get > /dev/null 2>&1 || EXIT_CODE=$?
-	if [ $EXIT_CODE -gt 0 ]; then
-		eval $(op signin)
-	fi
-	echo $(op item get "github" --format=json --fields label=CR_PAT | jq -r ".value")
-}
-
-function get_gh_token() {
-	# check 1password signin status
-	EXIT_CODE=0
-	op account get > /dev/null 2>&1 || EXIT_CODE=$?
-	if [ $EXIT_CODE -gt 0 ]; then
-		eval $(op signin)
-	fi
-	echo $(op item get "github" --format=json --fields label=PAT | jq -r ".value")
-}
-
-
 # bun completions
 [ -s "/Users/kevin/.bun/_bun" ] && source "/Users/kevin/.bun/_bun"
 
@@ -202,3 +120,9 @@ source /Users/kevin/.config/op/plugins.sh
 # For cURL w/ HTTP3 support
 # https://gist.github.com/xmlking/cff9510dac9281d29390392cbbb033a8
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
