@@ -80,7 +80,7 @@ SCRIPT_DIR=$(pwd)
 popd > /dev/null
 
 # names in this list won't be dot-prefixed
-skip_dot_prefix=(nvim, starship.toml)
+skip_dot_prefix=(nvim)
 
 # contains checks if an array ($2) contains a given element ($1).
 contains() {
@@ -222,9 +222,6 @@ vscode_extensions
 
 # Install oh-my-zsh - https://ohmyz.sh/
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-# Install starship - https://starship.rs/guide/#%F0%9F%9A%80-installation
-curl -sS https://starship.rs/install.sh | sh
 
 
 # gpg (depends on gnupg being installed)

@@ -55,6 +55,10 @@ export AWS_PAGER=""
 # in order for plugins to load.
 source $ZSH/oh-my-zsh.sh
 
+# Pure prompt
+autoload -U promptinit; promptinit
+prompt pure
+
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

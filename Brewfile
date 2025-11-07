@@ -43,6 +43,7 @@ brew "node"
 brew "pinentry-mac"
 brew "protobuf"
 brew "postgresql" # psql
+brew "pure" # https://github.com/sindresorhus/pure
 brew "ripgrep" # 'rg' better grep
 brew "ruby"
 brew "rbenv"
