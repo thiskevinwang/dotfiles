@@ -28,6 +28,7 @@ brew "go"
 brew "goreleaser"
 brew "hashicorp/tap/terraform"
 brew "jq"
+brew "lsd" # better ls https://github.com/lsd-rs/lsd
 brew "mike-engel/jwt-cli/jwt-cli"
 brew "mas" # Mac App Store CLI
 brew "neofetch"
