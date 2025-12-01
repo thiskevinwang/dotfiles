@@ -17,29 +17,6 @@ else
 fi
 echo ""
 
-# Install Rust
-echo "🦀 Rust"
-which -s rustup
-if [[ $? != 0 ]] ; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-else
-  echo "  rustup is installed"
-fi
-echo ""
-
-which -s wasm-pack
-if [[ $? != 0 ]] ; then
-  # Fails for M1 Macs
-  curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-  if [[ $? != 0 ]] ; then
-    cargo install wasm-pack
-  fi
-else
-  echo "  wasm-pack is installed"
-fi
-echo ""
-
-
 # Install Oh My Zsh
 echo "😮 Oh My Zsh"
 ZSH_CUSTOM_DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom/}/plugins/zsh-autosuggestions
