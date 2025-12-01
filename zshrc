@@ -37,7 +37,7 @@ compinit
 eval "$(op completion zsh)"; compdef _op op
 
 # OpenAI
-. "$HOME/.openai/credentials"
+[[ -f "$HOME/.openai/credentials" ]] && . "$HOME/.openai/credentials"
 
 # ensure brew is in path
 export PATH=/opt/homebrew/bin:$PATH
@@ -119,7 +119,6 @@ export ANDROID_SDK=/Users/kevin/Library/Android/sdk
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-source /Users/kevin/.config/op/plugins.sh
 
 # For cURL w/ HTTP3 support
 # https://gist.github.com/xmlking/cff9510dac9281d29390392cbbb033a8
@@ -131,4 +130,8 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# https://github.com/tobi/try
 eval "$(ruby ~/.local/try.rb init ~/src/tries)"
+
+# GPG TTY setup
+export GPG_TTY=$(tty)
