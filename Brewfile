@@ -3,20 +3,16 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/cask-fonts"
-tap "hashicorp/tap"
 
 # Font
 cask "font-fira-code-nerd-font"
 
 # Binaries
-brew "aws-cdk"
 brew "awscli"
 brew "bat" # better cat
 brew "bottom" # better top
 brew "certigo"
 brew "cfssl"
-brew "charmbracelet/tap/mods"
-brew "glow"
 brew "cmake"
 brew "dark-mode"
 brew "dog"
@@ -26,7 +22,6 @@ brew "gh" # GitHub CLI
 brew "gnupg"
 brew "go"
 brew "goreleaser"
-brew "hashicorp/tap/terraform"
 brew "jq"
 brew "lsd" # better ls https://github.com/lsd-rs/lsd
 brew "mike-engel/jwt-cli/jwt-cli"
@@ -35,20 +30,15 @@ brew "neofetch"
 brew "neovim" # 'nvim'
 brew "node"
 brew "pinentry-mac"
-brew "protobuf"
 brew "postgresql" # psql
 brew "pure" # https://github.com/sindresorhus/pure
 brew "ripgrep" # 'rg' better grep
-brew "ruby"
-brew "rbenv"
-brew "ruby-build"
 brew "tree"
 brew "uv" # python dependency manager https://docs.astral.sh/uv/getting-started/installation/#pypi
 brew "vercel-cli"
 brew "watch"
 brew "watchman"
 brew "webp"
-brew "yarn"
 brew "yq" # jq, but for YAML
 
 # Apps
@@ -60,10 +50,8 @@ cask "docker"
 cask "firefox"
 cask "ghostty"
 cask "google-chrome"
-cask "kaleidoscope"
 cask "linear-linear"
 cask "notion"
-cask "postman"
 cask "slack"
 cask "tableplus"
 cask "tuple" # tuple.app
