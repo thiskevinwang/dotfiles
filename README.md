@@ -2,14 +2,6 @@
 
 This is me managing my Dotfiles, Brew Binaries, Mac Apps, VSCode extensions
 
-## What My Setup Looks Like
-
-![CleanShot 2023-10-09 at 08 33 30@2x](https://github.com/thiskevinwang/dotfiles/assets/26389321/d753b088-1519-4fb7-b838-4505bbe39ec5#gh-light-mode-only)
-![CleanShot 2023-10-09 at 08 34 03@2x](https://github.com/thiskevinwang/dotfiles/assets/26389321/7a9b20d3-016f-47e2-9c1f-104a411fb2e4#gh-dark-mode-only)
-
-> [!WARNING]
->
-> VSCode and iTerm are my two daily tools. I no longer use vim/nvim, nor never really understood how to get around efficiently, so all vim settings here will not really be maintained.
 
 ## Quickstart
 
@@ -51,11 +43,6 @@ This installs all the specified plugins
 
 ## VSCode
 
-**TODOS**
-
-- [ ] Programmatically install `code` CLI
-- [ ] Sync `~/.vscode/extentions`
-
 ### `code` CLI
 
 Installing `code` CLI
@@ -90,11 +77,7 @@ In VSCode
 Option == Opt/Alt on HHKB
 ![image](https://user-images.githubusercontent.com/26389321/131890471-e80c74f4-2876-4390-bd80-1209618a0619.png)
 
-### iTerm2 Colors
 
-Download the `*.itermcolors` from https://github.com/cdalvaro/github-vscode-theme-iterm and import them via iTerm2
-
-Settings → Profiles → Colors → Color Presets → Import...
 
 ### Auto dark mode
 
@@ -134,3 +117,35 @@ async def main(connection):
 
 iterm2.run_forever(main)
 ```
+
+### Signed commits
+
+There are a few steps following the installation of `gnupg`:
+
+- Generate a key
+- Set the key id in a machine-specific config
+- Upload the public key to GitHub
+
+
+```console
+user@~: $ gpg --full-generate-key
+pub   ed25519 2025-12-01 [SC] [expires: 2027-12-01]
+      KEY_ID
+uid                      user (comment) <email>
+sub   cv25519 2025-12-01 [E] [expires: 2027-12-01]
+
+user@~: $ cat > ~/.gitconfig.local << 'EOF'
+[user]
+    signingkey = <KEY_ID>
+
+[commit]
+    gpgsign = true
+EOF
+
+user@~: $ git config --get commit.gpgsign
+user@~: $ export GPG_TTY=$(tty) && echo "test" | gpg --clearsign
+user@~: $ echo 'export GPG_TTY=$(tty)' >> ~/.zshrc && source ~/.zshrc
+user@~: $ gpg --armor --export KEY_ID
+# Upload this to https://github.com/settings/gpg/new
+```
+
