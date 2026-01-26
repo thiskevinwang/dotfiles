@@ -135,3 +135,12 @@ eval "$(ruby ~/.local/try.rb init ~/src/tries)"
 
 # GPG TTY setup
 export GPG_TTY=$(tty)
+
+# Added by Antigravity
+export PATH="/Users/kevin/.antigravity/antigravity/bin:$PATH"
+
+# https://medium.com/@GroundControl/better-git-diffs-with-fzf-89083739a9cb
+fd() {
+  preview="git diff $@ -- {-1} | bat -n --color=always"
+  git diff $@ --name-only | fzf -m --ansi --preview $preview
+}
