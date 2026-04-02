@@ -144,3 +144,8 @@ fd() {
   preview="git diff $@ -- {-1} | bat -n --color=always"
   git diff $@ --name-only | fzf -m --ansi --preview $preview
 }
+
+# Codex
+cexec() { 
+	codex --model=gpt-5.4 --yolo exec "$*";
+}
