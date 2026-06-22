@@ -149,3 +149,5 @@ fd() {
 cexec() { 
 	codex --model=gpt-5.4 --yolo exec "$*";
 }
+
+eval "$(codex completion zsh)"
