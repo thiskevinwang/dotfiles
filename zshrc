@@ -1,6 +1,8 @@
-# Ensure brew can be found
-# Issue seen on m1 max mbp
-[[ -f /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
+# Initialize Homebrew without making shell startup depend on the terminal's
+# current directory being readable. `brew shellenv` performs that check.
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(cd "$HOME" && /opt/homebrew/bin/brew shellenv)"
+fi
 
 # Check for ARM or Intel arch
 [[ $(uname -m) == "arm64" ]] && export IS_ARM=true || export IS_ARM=false
@@ -33,15 +35,11 @@ alias dm="dark-mode"
 autoload -Uz compinit
 compinit
 
-# 1password
-eval "$(op completion zsh)"; compdef _op op
-
-# OpenAI
-[[ -f "$HOME/.openai/credentials" ]] && . "$HOME/.openai/credentials"
-
-# ensure brew is in path
-export PATH=/opt/homebrew/bin:$PATH
-
+# 1Password CLI completion (available after Homebrew initializes PATH).
+if (( $+commands[op] )); then
+  eval "$(op completion zsh)"
+  compdef _op op
+fi
 
 # go-bindata
 export PATH=$PATH:$(go env GOPATH)/bin
