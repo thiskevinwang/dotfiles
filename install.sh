@@ -74,7 +74,7 @@ UNAME=$(uname | tr '[:upper:]' '[:lower:]')
 for path in $SCRIPT_DIR/*; do
   name=$(basename $path)
   case $name in
-    *.md|*.sh) continue;;
+    *.md|*.sh|zed) continue;;
   esac
 
   # If there exists a platform-specific version, then use that
@@ -108,6 +108,31 @@ for path in $SCRIPT_DIR/*; do
       ;;
   esac
 done
+
+# Link nested config files without replacing their parent directories.
+sync_file() {
+  local source="$1"
+  local target="$2"
+  local relative_source="${source#"$SCRIPT_DIR/"}"
+
+  mkdir -p "${target%/*}"
+  rm -f "$target"
+  case $UNAME in
+    cygwin* | mingw32*)
+      cp "$source" "$target"
+      echo "  · Copied $relative_source to $target."
+      ;;
+    *)
+      ln -s "$source" "$target"
+      echo "  · Linked $relative_source to $target."
+      ;;
+  esac
+}
+
+sync_file "$SCRIPT_DIR/AGENTS.md" "$HOME/.codex/AGENTS.md"
+sync_file "$SCRIPT_DIR/AGENTS.md" "$HOME/.claude/CLAUDE.md"
+sync_file "$SCRIPT_DIR/AGENTS.md" "$HOME/.config/zed/AGENTS.md"
+sync_file "$SCRIPT_DIR/zed/settings.json" "$HOME/.config/zed/settings.json"
 echo ""
 
 # setup the vim directory

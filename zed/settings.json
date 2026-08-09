@@ -1,0 +1,97 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+    "edit_predictions": {
+        "provider": "copilot"
+    },
+    "diff_view_style": "split",
+    "cli_default_open_behavior": "new_window",
+    "proxy": "",
+    "disable_ai": false,
+    "project_panel": {
+        "dock": "left"
+    },
+    "outline_panel": {
+        "dock": "right"
+    },
+    "collaboration_panel": {
+        "dock": "right"
+    },
+    /* Duplicated key auto-commented: "agent": {
+        "dock": "right",
+        "favorite_models": [],
+        "model_parameters": []
+    }, */
+    "git_panel": {
+        "tree_view": false,
+        "sort_by": "path",
+        "group_by": "staging",
+        "dock": "left"
+    },
+    "icon_theme": {
+        "mode": "system",
+        "light": "Catppuccin Latte",
+        "dark": "Catppuccin Frappé"
+    },
+    "agent": {
+        "sidebar_side": "right",
+        "dock": "right",
+        "sandbox_permissions": {
+            "allow_unsandboxed": true,
+            "network_hosts": [
+                "oxc.rs"
+            ]
+        },
+        "tool_permissions": {
+            "tools": {
+                "skill": {
+                    "default": "allow"
+                },
+                "delete_path": {
+                    "default": "allow"
+                },
+                "fetch": {
+                    "always_allow": [
+                        {
+                            "pattern": "^https?://oxc\\.rs"
+                        }
+                    ]
+                },
+                "terminal": {
+                    "default": "allow"
+                }
+            }
+        },
+        "favorite_models": [
+            {
+                "provider": "openai-subscribed",
+                "model": "gpt-5.6-sol",
+                "enable_thinking": true,
+                "effort": "high",
+                "speed": "standard"
+            }
+        ],
+        "play_sound_when_agent_done": "when_hidden",
+        "default_model": {
+            "speed": "standard",
+            "effort": "high",
+            "enable_thinking": true,
+            "provider": "openai-subscribed",
+            "model": "gpt-5.6-sol"
+        },
+    },
+    "theme": {
+        "mode": "system",
+        "light": "Catppuccin Latte",
+        "dark": "Catppuccin Frappé"
+    },
+    "buffer_font_size": 15,
+    "format_on_save": "on",
+    "buffer_font_family": "IBM Plex Mono"
+}
