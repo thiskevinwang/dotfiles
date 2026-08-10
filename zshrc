@@ -57,6 +57,18 @@ source $ZSH/oh-my-zsh.sh
 autoload -U promptinit; promptinit
 prompt pure
 
+# Show when Proxyman has injected its proxy environment into this shell.
+autoload -Uz add-zsh-hook
+function _prompt_proxyman_status() {
+    if [[ "$PROXYMAN_INJECTION_ACTIVE" == true ]]; then
+        psvar[21]=proxyman
+    else
+        psvar[21]=''
+    fi
+}
+add-zsh-hook precmd _prompt_proxyman_status
+PROMPT='%(21V.%F{yellow}%21v%f .)'"$PROMPT"
+
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
