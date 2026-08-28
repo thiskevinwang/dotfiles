@@ -1,0 +1,14 @@
+font-family = IBM Plex Mono
+window-title-font-family = IBM Plex Mono
+
+macos-secure-input-indication = false
+# macos-window-buttons = hidden
+# macos-icon = paper
+keybind = shift+enter=text:\x1b\r
+
+# https://ghostty.org/docs/install/pre
+auto-update-channel = tip
+
+# https://github.com/marlonrichert/zsh-autocomplete/issues/830#issuecomment-3749963680
+shell-integration-features = ssh-terminfo
+shell-integration-features = ssh-env

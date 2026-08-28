@@ -133,6 +133,7 @@ sync_file "$SCRIPT_DIR/AGENTS.md" "$HOME/.codex/AGENTS.md"
 sync_file "$SCRIPT_DIR/AGENTS.md" "$HOME/.claude/CLAUDE.md"
 sync_file "$SCRIPT_DIR/AGENTS.md" "$HOME/.config/zed/AGENTS.md"
 sync_file "$SCRIPT_DIR/zed/settings.json" "$HOME/.config/zed/settings.json"
+sync_file "$SCRIPT_DIR/ghostty/config" "$HOME/.config/ghostty/config"
 echo ""
 
 # setup the vim directory
