@@ -2,7 +2,6 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
-tap "homebrew/cask-fonts"
 
 # Font
 cask "font-fira-code-nerd-font"
@@ -29,6 +28,7 @@ brew "mas" # Mac App Store CLI
 brew "neofetch"
 brew "neovim" # 'nvim'
 brew "node"
+brew "nushell" # 'nu'
 brew "pinentry-mac"
 brew "postgresql" # psql
 brew "pure" # https://github.com/sindresorhus/pure
@@ -46,11 +46,11 @@ cask "1password"
 cask "1password-cli"
 cask "cleanshot"
 cask "discord"
-cask "docker"
+cask "docker-desktop"
 cask "firefox"
 cask "ghostty"
 cask "google-chrome"
-cask "linear-linear"
+cask "linear"
 cask "notion"
 cask "slack"
 cask "tableplus"

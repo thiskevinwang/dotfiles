@@ -74,7 +74,7 @@ UNAME=$(uname | tr '[:upper:]' '[:lower:]')
 for path in $SCRIPT_DIR/*; do
   name=$(basename $path)
   case $name in
-    *.md|*.sh|zed) continue;;
+    *.md|*.sh|nushell|zed) continue;;
   esac
 
   # If there exists a platform-specific version, then use that
@@ -134,6 +134,7 @@ sync_file "$SCRIPT_DIR/AGENTS.md" "$HOME/.claude/CLAUDE.md"
 sync_file "$SCRIPT_DIR/AGENTS.md" "$HOME/.config/zed/AGENTS.md"
 sync_file "$SCRIPT_DIR/zed/settings.json" "$HOME/.config/zed/settings.json"
 sync_file "$SCRIPT_DIR/ghostty/config" "$HOME/.config/ghostty/config"
+sync_file "$SCRIPT_DIR/nushell/config.nu" "$HOME/Library/Application Support/nushell/config.nu"
 sync_file "$SCRIPT_DIR/tmux-powerline/theme.sh" "$HOME/.config/tmux-powerline/themes/theme.sh"
 echo ""
 
