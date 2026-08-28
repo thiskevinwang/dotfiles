@@ -45,6 +45,7 @@ brew "yq" # jq, but for YAML
 cask "1password"
 cask "1password-cli"
 cask "cleanshot"
+cask "copilot-cli"
 cask "discord"
 cask "docker-desktop"
 cask "firefox"
