@@ -39,6 +39,17 @@ Keybindings are here...
 
 https://thekevinwang.com/atoms/01K993VJKY10E06E7AY2XAHRRM
 
+## tmux setup
+
+Install TPM and start tmux:
+
+```sh
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+tmux source-file ~/repos/dotfiles/tmux.conf
+```
+
+Inside tmux, press `Ctrl-b`, then `Shift-i` to install the configured plugins. This only needs to be done once per machine.
+
 ## Misc Machine Setup
 a
 ### Map `Caps Lock` (<kbd>⇪</kbd>) to `Control` (<kbd>⌃</kbd>)
@@ -75,4 +86,3 @@ user@~: $ echo 'export GPG_TTY=$(tty)' >> ~/.zshrc && source ~/.zshrc
 user@~: $ gpg --armor --export KEY_ID
 # Upload this to https://github.com/settings/gpg/new
 ```
-
