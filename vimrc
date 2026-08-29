@@ -24,14 +24,11 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'b4b4r07/vim-hcl'
 Plug 'LnL7/vim-nix'
-Plug 'scrooloose/nerdtree'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 
 Plug 'myusuf3/numbers.vim'
-Plug 'prettier/vim-prettier', { 'do': 'npm i' }
 Plug 'cespare/vim-toml', { 'branch': 'main' }
-Plug 'github/copilot.vim'
 Plug 'sindrets/diffview.nvim'
 Plug 'preservim/nerdcommenter'
 if has('nvim')
@@ -45,6 +42,30 @@ Plug 'kristijanhusak/vim-simple-notifications'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
+" Use Space as the leader key
+let mapleader = " "
+let maplocalleader = " "
+
+" Disable unused optional provider hosts
+let g:loaded_node_provider = 0
+let g:loaded_perl_provider = 0
+let g:loaded_ruby_provider = 0
+
+" General editing and search settings
+set number
+set relativenumber
+set hidden
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set expandtab
+set cursorline
+
+" Use ripgrep for project searches
+set grepprg=rg\ --vimgrep\ --smart-case
+set grepformat=%f:%l:%c:%m
+
 " For https://vimawesome.com/plugin/the-nerd-commenter
 filetype plugin on
 " Create default mappings
@@ -52,13 +73,6 @@ let g:NERDCreateDefaultMappings = 1
 
 " keep cursor as a block during insert mode
 set guicursor=i:block
-
-"-------------------------------------------
-" prettier
-"-------------------------------------------
-let g:prettier#autoformat = 1
-let g:prettier#autoformat_require_pragma = 0
-let g:prettier#autoformat_config_present = 0
 
 set tabstop=2
 set shiftwidth=2
@@ -119,14 +133,9 @@ vmap ÷ <plug>NERDCommenterToggle<CR>gv
 
 "-------------------------------------------------------------
 " File tree
-" - vim: NERDTree
 " - nvim: nvim-tree.lua
 "-------------------------------------------------------------
 autocmd StdinReadPre * let s:std_in=1
-
-"-- open NERDTree on `vim .` ---------------------------------
-autocmd VimEnter * if argc() == 1 && has('vim') && isdirectory(argv()[0]) && !exists('s:std_in') |
-			\ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
 "-- open nvim-tree on `nvim .` -------------------------------
 autocmd VimEnter * if argc() == 1 && has('nvim') && isdirectory(argv()[0]) && !exists('s:std_in') |
@@ -136,15 +145,18 @@ autocmd VimEnter * if argc() == 1 && has('nvim') && isdirectory(argv()[0]) && !e
 "-------------------------------------------------------------
 
 if has('nvim')
+	lua require('telescope').setup({})
+	nnoremap <silent> <leader>ff <cmd>Telescope find_files<CR>
+	nnoremap <silent> <leader>fg <cmd>Telescope live_grep<CR>
+	nnoremap <silent> <leader>fb <cmd>Telescope buffers<CR>
+	nnoremap <silent> <leader>fh <cmd>Telescope help_tags<CR>
+	nnoremap <silent> <leader>fc <cmd>Telescope current_buffer_fuzzy_find<CR>
+	nnoremap <silent> <leader>fs <cmd>Telescope grep_string<CR>
+
 	lua require'nvim-tree'.setup {}
 	"nnoremap <C-n> :NvimTreeToggle<CR>
 	nnoremap <leader>r :NvimTreeRefresh<CR>
 	nnoremap <leader>n :NvimTreeFindFile<CR>
-else
-	nnoremap <leader>n :NERDTreeFocus<CR>
-	nnoremap <C-n> :NERDTree<CR>
-	nnoremap <C-t> :NERDTreeToggle<CR>
-	" nnoremap <C-f> :NERDTreeFind<CR>
 endif
 
 
