@@ -1,3 +1,7 @@
 # This gitignore file is for this dotfiles itself
 Brewfile.lock.json
 
+# Nix build outputs / direnv cache
+result
+result-*
+.direnv/
