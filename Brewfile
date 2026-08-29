@@ -15,6 +15,7 @@ brew "cfssl"
 brew "cmake"
 brew "dark-mode"
 brew "dog"
+brew "fd" # better file finder for Telescope
 brew "fnm" # Node version manager
 brew "fzf"
 brew "gh" # GitHub CLI
@@ -25,6 +26,7 @@ brew "jq"
 brew "lsd" # better ls https://github.com/lsd-rs/lsd
 brew "mike-engel/jwt-cli/jwt-cli"
 brew "mas" # Mac App Store CLI
+brew "mercurial" # 'hg', used by Diffview health checks
 brew "neofetch"
 brew "neovim" # 'nvim'
 brew "node"
@@ -65,4 +67,3 @@ cask "zoom"
 #mas "Magnet", id: 441258766
 #mas "Xcode", id: 497799835
 # mas "Transporter", id: 1450874784
-
