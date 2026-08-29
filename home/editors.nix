@@ -40,5 +40,8 @@
   # Zed
   # ------------------------------------------------------------------
   home.file.".config/zed/settings.json".source = ../zed/settings.json;
+  # Zed reads AGENTS.md from its config dir as AI agent context, mirroring
+  # `sync_file "$SCRIPT_DIR/AGENTS.md" "$HOME/.config/zed/AGENTS.md"` in
+  # the legacy install.sh.
   home.file.".config/zed/AGENTS.md".source = ../AGENTS.md;
 }

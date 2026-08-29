@@ -50,6 +50,8 @@
   };
 
   # Pure prompt: https://github.com/sindresorhus/pure
+  # Populated at `~/.zsh/pure` by the `home.file` entry below; the fpath
+  # here just points zsh at that same path.
   home.file.".zsh/pure" = {
     source = pkgs.fetchFromGitHub {
       owner = "sindresorhus";

@@ -51,7 +51,6 @@
         # `darwin-rebuild switch --flake .#macbook`
         macbook = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
-          specialArgs = { inherit nixpkgs-unstable; };
           modules = [
             ./nix/darwin.nix
             home-manager.darwinModules.home-manager
@@ -71,7 +70,6 @@
         # `sudo nixos-rebuild switch --flake .#linux-desktop`
         linux-desktop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit nixpkgs-unstable; };
           modules = [
             ./nix/linux.nix
             home-manager.nixosModules.home-manager
