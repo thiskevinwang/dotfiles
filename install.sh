@@ -17,6 +17,11 @@ else
 fi
 echo ""
 
+# Install or update Codex
+echo "🤖 Codex"
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+echo ""
+
 # Install Oh My Zsh
 echo "😮 Oh My Zsh"
 ZSH_CUSTOM_DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom/}/plugins/zsh-autosuggestions
