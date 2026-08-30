@@ -120,16 +120,68 @@ let g:airline_theme='violet'
 "let mapleader = ","
 
 
-" start up notification
-"
-"call notifications#info([
-"			\"🐶 Welcome to nvim!",
-"			\"ℹ️  Note: Leader is (\\)",
-"			\"",
-"			\"",
-"			\"Useful cmds:",
 vmap ÷ <plug>NERDCommenterToggle<CR>gv
 
+
+" Show a keybinding cheat sheet instead of the default Nvim intro.
+function! ShowCheatsheet() abort
+	if !has('nvim')
+		return
+	endif
+
+	let l:lines = [
+			\ 'NVIM QUICK REFERENCE',
+			\ '',
+			\ 'MOVE                           EDIT',
+			\ 'h j k l    left/down/up/right   i / a       insert / append',
+			\ 'w / b      next/previous word   Esc         normal mode',
+			\ '0 / $      line start/end       u / Ctrl-r  undo / redo',
+			\ 'gg / G     file start/end       dd / yy / p delete / copy / paste',
+			\ 'Ctrl-hjkl  move between splits  ciw         replace word',
+			\ '',
+			\ 'SEARCH                         CODE',
+			\ '/text      search               gd / gi     definition / implementation',
+			\ 'n / N      next/previous        gr          references',
+			\ 'Space fg   project grep         [g / ]g     previous/next diagnostic',
+			\ '',
+			\ 'FILES                          COMMANDS',
+			\ 'Space ff   find files           :w          save',
+			\ 'Space fb   open buffers         :q          quit',
+			\ 'Space n    find in file tree    :Tutor      interactive tutorial',
+			\ 'Space fh   search help          :Cheatsheet show this screen',
+			\ 'Leader key: Space                                      q: close',
+			\ ]
+
+	let l:width = max(map(copy(l:lines), 'strdisplaywidth(v:val)'))
+	let l:left = max([0, (winwidth(0) - l:width) / 2])
+	let l:top = max([1, (winheight(0) - len(l:lines)) / 2])
+	let l:display = repeat([''], l:top)
+	call extend(l:display, map(l:lines, 'repeat(" ", l:left) . v:val'))
+
+	hide enew
+	setlocal buftype=nofile bufhidden=wipe noswapfile nobuflisted
+	file Cheatsheet
+	setlocal nonumber norelativenumber nocursorline nowrap nospell
+	setlocal modifiable
+	call setline(1, l:display)
+	setlocal nomodifiable
+	setlocal nomodified
+	nnoremap <silent><buffer> q <cmd>quit<CR>
+	nnoremap <silent><buffer> <Esc> <cmd>quit<CR>
+	call cursor(l:top + 1, l:left + 1)
+
+	syntax match CheatsheetTitle /NVIM QUICK REFERENCE/
+	syntax match CheatsheetSection /\<\(MOVE\|EDIT\|SEARCH\|CODE\|FILES\|COMMANDS\)\>/
+	highlight default link CheatsheetTitle Title
+	highlight default link CheatsheetSection Statement
+endfunction
+
+command! Cheatsheet call ShowCheatsheet()
+
+augroup startup_cheatsheet
+	autocmd!
+	autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && line('$') == 1 && getline(1) ==# '' | call ShowCheatsheet() | endif
+augroup END
 
 "-------------------------------------------------------------
 " File tree
