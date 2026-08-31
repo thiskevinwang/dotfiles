@@ -50,6 +50,12 @@ tmux source-file ~/repos/dotfiles/tmux.conf
 
 Inside tmux, press `Ctrl-b`, then `Shift-i` to install the configured plugins. This only needs to be done once per machine.
 
+The install script links the tmux-powerline config and custom theme. Reload tmux after changes:
+
+```sh
+tmux source-file ~/.tmux.conf
+```
+
 ## Misc Machine Setup
 a
 ### Map `Caps Lock` (<kbd>⇪</kbd>) to `Control` (<kbd>⌃</kbd>)

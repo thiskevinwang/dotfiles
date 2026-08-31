@@ -140,6 +140,7 @@ sync_file "$SCRIPT_DIR/AGENTS.md" "$HOME/.config/zed/AGENTS.md"
 sync_file "$SCRIPT_DIR/zed/settings.json" "$HOME/.config/zed/settings.json"
 sync_file "$SCRIPT_DIR/ghostty/config" "$HOME/.config/ghostty/config"
 sync_file "$SCRIPT_DIR/nushell/config.nu" "$HOME/Library/Application Support/nushell/config.nu"
+sync_file "$SCRIPT_DIR/tmux-powerline/config.sh" "$HOME/.config/tmux-powerline/config.sh"
 sync_file "$SCRIPT_DIR/tmux-powerline/theme.sh" "$HOME/.config/tmux-powerline/themes/theme.sh"
 echo ""
 
