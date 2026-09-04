@@ -32,7 +32,7 @@
 	prompt = false
 [core]
 	editor = nvim
-	page = false
+	pager = cat
 	excludesFile = ~/.gitignore
 [credential "https://github.com"]
 	helper = 
