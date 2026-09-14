@@ -3,9 +3,6 @@
 "----------------------------------------------------------------------
 "
 call plug#begin()
-" For everforest colorscheme to work, make sure it's at the top of the plugin
-" list
-Plug 'sainnhe/everforest'
 " For vim-colors-github to work, make sure it's at the top of the plugin list
 " Plug 'cormacrelf/vim-colors-github'
 Plug 'projekt0n/github-nvim-theme'
@@ -15,9 +12,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoUpdateBinaries' }
-Plug 'gcmt/taboo.vim'
-Plug 'plasticboy/vim-markdown'
-Plug 'tpope/vim-fugitive'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'pangloss/vim-javascript'
@@ -27,7 +21,6 @@ Plug 'LnL7/vim-nix'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 
-Plug 'myusuf3/numbers.vim'
 Plug 'cespare/vim-toml', { 'branch': 'main' }
 Plug 'sindrets/diffview.nvim'
 Plug 'preservim/nerdcommenter'
