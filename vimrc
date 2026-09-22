@@ -83,35 +83,6 @@ if has('termguicolors')
 	set termguicolors
 endif
 
-" For dark version.
-" set background=light
-
-" For light version.
-" set background=light
-
-"-------------------------------------------------------------
-" Set nvim theme to github
-" Set vim theme to everforest
-"-------------------------------------------------------------
-if has('nvim')
-	colorscheme github_dark " github_light | github_dark
-else
-	let g:everforest_background = 'hard'
-	colorscheme everforest
-endif
-
-
-" Airline
-let g:airline#extensions#tabline#enabled = 1
-" No Arrows, only rectangles — https://github.com/vim-airline/vim-airline/issues/1688
-let g:airline_powerline_fonts = 1
-"let g:airline_theme='base16_google_dark'
-"let g:airline_theme='angr'
-let g:airline_theme='violet'
-
-" change leader key
-"let mapleader = ","
-
 
 vmap ÷ <plug>NERDCommenterToggle<CR>gv
 
