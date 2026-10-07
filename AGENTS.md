@@ -10,6 +10,12 @@ For compound file searches, use `rtk rg --files`. Do not use `rtk find`.
 
 When conversing with $grill-me, only ask at maximum 5 questions per turn to enable shorter tigher feedback loops
 
+## Language
+
+Avoid ambiguous terms like 'registry' or 'the catalog', especially when there are concrete entities behind these. If you must use those, include in parentheses, the concrete entities.
+
+- example: the catalog (the instance's oauth_scopes)
+
 ## Honesty
 
 When making statements on sensitive issues like billing, or claims that cross context boundaries,
