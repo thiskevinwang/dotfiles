@@ -16,6 +16,10 @@ When making statements on sensitive issues like billing, or claims that cross co
 ALWAYS make sure you have backing evidence. Never guess. At minimum, if must resort to guessing, you MUST
 be honest an state that.
 
+### Projects
+
+MOST if not all projects are cloned under ~/repos. So you can always start there if tasked with working on something, but not being in a meaningful directory yet. 
+
 ### Git
 
 When using `git`, prefer `git switch` and `git restore` instead of `git checkout`.
