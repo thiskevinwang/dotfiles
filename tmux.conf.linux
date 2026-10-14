@@ -1,0 +1,18 @@
+# Works with distribution tmux versions that lack client theme events.
+set -g mouse on
+set -g set-titles on
+set -g set-titles-string '#T'
+set -g set-clipboard on
+set -g focus-events on
+unbind C-b
+unbind C-a
+set -g prefix C-Space
+bind C-Space send-prefix
+set -ga terminal-overrides ',xterm*:Tc'
+set -g window-style 'fg=#8a8a8a,bg=#20242a'
+set -g window-active-style 'fg=default,bg=default'
+set -g pane-border-style 'fg=#404040,bg=default'
+set -g pane-active-border-style 'fg=#ffffff,bg=default'
+set -g @plugin 'erikw/tmux-powerline'
+if-shell 'test -f ~/.tmux/plugins/tpm/tpm' 'run-shell ~/.tmux/plugins/tpm/tpm'
+if-shell 'test -f ~/.tmux/plugins/tmux-powerline/main.tmux' 'run-shell ~/.tmux/plugins/tmux-powerline/main.tmux'
