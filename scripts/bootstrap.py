@@ -226,7 +226,7 @@ def finish_setup(repo, home):
         extension = extension.strip()
         if extension and extension.lower() not in installed:
             run([code, "--install-extension", extension])
-    for tool in ["git", "gh", "gpg", "go", "nvim", "tmux", "rtk"]:
+    for tool in ["git", "gh", "gpg", "go", "node", "nvim", "tmux", "rtk", "watchman"]:
         if not executable(tool):
             raise ValueError("Missing command after activation: " + tool)
 
@@ -234,8 +234,9 @@ def finish_setup(repo, home):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--host", choices=["kevin-mac", "kevin-intel"])
-    parser.add_argument("--build-only", action="store_true", help="build without installs, backups, or activation")
-    parser.add_argument("--restore", type=Path, metavar="BACKUP", help="restore the named file backup")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--build-only", action="store_true", help="build without installs, backups, or activation")
+    mode.add_argument("--restore", type=Path, metavar="BACKUP", help="restore the named file backup")
     args = parser.parse_args(argv)
     home = Path.home()
     if args.restore:
@@ -268,6 +269,8 @@ def main(argv=None):
         flake + "lib.bootstrap." + host], capture=True))
     if manifest["username"] != getpass.getuser():
         raise ValueError("Host username does not match this user")
+    # Obtain administrator access before any home file is moved.
+    run(["sudo", "-v"])
     backup = adopt(manifest, home, REPO)
     try:
         root_path = str(Path(nix).parent) + ":/usr/bin:/bin:/usr/sbin:/sbin"

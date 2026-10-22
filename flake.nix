@@ -53,7 +53,7 @@
           repoLink = "${home.home.homeDirectory}/.local/share/dotfiles/repo";
           files = map (file: {
             target = file.target;
-            source = toString file.source;
+            source = "${file.source}";
           }) (builtins.filter (file: file.enable)
             (builtins.attrValues home.home.file));
         }) systems;

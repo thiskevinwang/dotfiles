@@ -9,7 +9,7 @@
   home.packages = with pkgs; [
     awscli2 bat bottom certigo cfssl cmake doggo fd fnm fzf gh git git-lfs
     gnupg go goreleaser jq lsd jwt-cli mercurial fastfetch neovim nodejs
-    nushell pinentry_mac pure-prompt ripgrep tree uv watch watchman
+    nushell pinentry_mac pure-prompt ripgrep tree uv watch
     libwebp yq-go tmux rtk python3 ibm-plex codex mas
   ];
 

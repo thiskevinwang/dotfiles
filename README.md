@@ -1,6 +1,6 @@
 # dotfiles
 
-macOS setup with nix-darwin and Home Manager. Nix installs CLI tools, fonts, and plugins. Homebrew installs app casks plus `dark-mode`, `vercel-cli`, and `postgresql@18`.
+macOS setup with nix-darwin and Home Manager. Nix installs CLI tools, fonts, and plugins. Homebrew installs app casks plus `dark-mode`, `vercel-cli`, `watchman`, and `postgresql@18`.
 
 ## Setup
 
@@ -40,12 +40,14 @@ This requires Nix and Apple's command-line tools. It does not install prerequisi
 | `nix/darwin.nix` | macOS settings and Homebrew activation |
 | `nix/home.nix` | CLI tools, fonts, shell, and file mappings |
 | `nix/editors.nix` | Vim/Neovim plugins and shared configuration |
-| `Brewfile` | App casks and the three CLI/database exceptions |
+| `Brewfile` | App casks and the four CLI/database exceptions |
 | `scripts/bootstrap.py` | Prerequisites, file adoption, backups, and activation |
 
 Nix keeps its existing installer and daemon owner: `nix.enable = false`. Bootstrap does not replace or downgrade the installed Nix version.
 
 Nix CLI tools take priority over existing Homebrew binaries in a new shell. Existing Homebrew packages remain installed; automatic cleanup, updates, and upgrades are disabled. No database service or data directory is migrated. `doggo` replaces the unavailable `dog` package; `fastfetch` replaces deprecated `neofetch`.
+
+Watchman stays in Homebrew because the pinned Nix `edencommon` dependency failed test discovery with a timeout during validation on this Mac.
 
 Configuration files normally come from the Nix store. Edit their repo sources, then run bootstrap again. Zed settings remain writable through a checkout link at `~/.local/share/dotfiles/repo`. Credentials, application state, `~/.gitconfig.local`, and existing GPG agent settings remain local.
 
@@ -87,6 +89,7 @@ python3 -m unittest discover -s tests -v
 bash -n bootstrap.sh setup.sh install.sh
 zsh -n zshrc
 bash ./bootstrap.sh --build-only
+python3 tests/check_runtime.py
 ```
 
 ## Git signing

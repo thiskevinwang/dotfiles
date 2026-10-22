@@ -6,6 +6,7 @@ cask "font-fira-code-nerd-font"
 # Homebrew-only tools and the existing database installation. CLI tools are in nix/home.nix.
 brew "dark-mode"
 brew "vercel-cli"
+brew "watchman" # Pinned Nix edencommon tests time out on this Mac.
 brew "postgresql@18" # Existing Homebrew database ownership remains unchanged.
 
 # Apps

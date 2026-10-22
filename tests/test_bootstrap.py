@@ -184,7 +184,7 @@ class BootstrapTests(unittest.TestCase):
             return str(self.system) + "\n"
         if "eval" in argv:
             return json.dumps({"username": "kevin"})
-        if "sudo" in argv:
+        if "switch" in argv:
             raise subprocess.CalledProcessError(1, argv)
         return "/Library/Developer/CommandLineTools\n"
 
@@ -219,6 +219,26 @@ class BootstrapTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "architecture"):
                 bootstrap.main(["--host", "kevin-intel"])
         prerequisites.assert_not_called()
+
+    def test_build_only_cannot_be_combined_with_restore(self):
+        with patch.object(bootstrap, "restore") as restore:
+            with self.assertRaises(SystemExit) as error:
+                bootstrap.main(["--build-only", "--restore", "/unused"])
+        self.assertEqual(error.exception.code, 2)
+        restore.assert_not_called()
+
+    def test_administrator_denial_cannot_move_home_files(self):
+        def deny(command, capture=False):
+            if command == ["sudo", "-v"]:
+                raise subprocess.CalledProcessError(1, command)
+            return self.command(command, capture)
+
+        with patch.object(bootstrap, "prerequisites", return_value="/nix/bin/nix"), \
+             patch.object(bootstrap, "run", side_effect=deny), \
+             patch.object(bootstrap, "adopt") as adopt:
+            with self.assertRaises(subprocess.CalledProcessError):
+                bootstrap.main([])
+        adopt.assert_not_called()
 
     def test_existing_nix_is_not_reinstalled_for_build_only(self):
         with patch.object(bootstrap, "executable", return_value="/nix/bin/nix"), \

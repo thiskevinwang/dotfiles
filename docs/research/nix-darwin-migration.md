@@ -1,6 +1,6 @@
 # nix-darwin migration
 
-The migration is now implemented on this branch. See [setup instructions](../../README.md). The bootstrap, flake, and plugin sources replace the old installer. Nix owns supported CLI tools; Homebrew retains app casks and three exceptions. The installed Nix version remains under its current owner.
+The migration is now implemented on this branch. See [setup instructions](../../README.md). The bootstrap, flake, and plugin sources replace the old installer. Nix owns supported CLI tools; Homebrew retains app casks and four exceptions. The installed Nix version remains under its current owner.
 
 ## Historical spike
 
