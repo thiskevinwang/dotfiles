@@ -8,7 +8,36 @@ Scope: the current Apple Silicon Mac. Linux migration remains separate.
 
 Use nix-darwin for the Mac configuration and Homebrew. Use its Home Manager module for user files. Keep existing config files and Homebrew package ownership during the first migration. Move CLI tools to Nix in later changes, one tool at a time.
 
-This is a proposed migration, not a tested Nix configuration. No Nix installation, evaluation, build, or activation was done. The checked Mac runs arm64 macOS 26.7.1. `nix` and `darwin-rebuild` were not on PATH; `/nix`, `/etc/nix`, and `/run/current-system` were absent. A build on this Mac must verify support.
+This remains a proposed migration. After Nix installation, the example below passed a flake check and a full system build on arm64 macOS 26.7.1. No activation was run. The repo still has no `flake.nix`, `flake.lock`, or `bootstrap.sh`.
+
+## Validation after Nix installation
+
+Verified Nix 2.35.3 and its daemon. The tool shell did not have Nix on PATH; this profile script made it available:
+
+```sh
+source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+```
+
+The Markdown example and its three source files were copied to a temporary folder. A lockfile was generated there. These checks passed:
+
+- `nix flake check --no-build`.
+- `nix build --no-link --print-out-paths --no-update-lock-file .#darwinConfigurations.kevin-mac.system`.
+- The built output contains an executable `sw/bin/darwin-rebuild` and activation scripts.
+- The generated Brewfile contains the repo Brewfile unchanged: 35 formulae, 17 casks, and 3 taps.
+
+The successful build used these locked revisions:
+
+| Input | Revision |
+| --- | --- |
+| nixpkgs | [36fd15bbb657815e2028e31d715c2e43a1230c91](https://github.com/NixOS/nixpkgs/commit/36fd15bbb657815e2028e31d715c2e43a1230c91) |
+| nix-darwin | [4459544d8296fa2cca7168de1e54a6691ec48a17](https://github.com/nix-darwin/nix-darwin/commit/4459544d8296fa2cca7168de1e54a6691ec48a17) |
+| Home Manager | [24f8f8e786f87d6a818e1746cb2389bf922afdab](https://github.com/nix-community/home-manager/commit/24f8f8e786f87d6a818e1746cb2389bf922afdab) |
+
+Build output: `/nix/store/7xlprwpc8dp6hr1m0gxaxhxqabzqfsqg-darwin-system-26.05.4459544`.
+
+The proposed configuration selects Nix 2.34.9+1; the installed version is 2.35.3. Review Nix version and installation ownership before the first activation.
+
+This proves that the small example builds. Homebrew installation, file adoption, plugin behavior, fresh-machine setup, and activation remain untested. No Homebrew command or activation script was run during validation.
 
 ## One-command setup target
 
@@ -131,7 +160,7 @@ This example shows the proposed integration with tmux and agent instruction file
 }
 ```
 
-The release input names match the [nix-darwin release flake](https://github.com/nix-darwin/nix-darwin/blob/nix-darwin-26.05/flake.nix) and [Home Manager release branch](https://github.com/nix-community/home-manager/tree/release-26.05). Module wiring follows the [Home Manager Darwin template](https://github.com/nix-community/home-manager/blob/release-26.05/templates/nix-darwin/flake.nix). Generate and commit `flake.lock`; branch names alone do not freeze revisions. These branch sources were read; exact upstream HEAD hashes were not obtained.
+The release input names match the [nix-darwin release flake](https://github.com/nix-darwin/nix-darwin/blob/nix-darwin-26.05/flake.nix) and [Home Manager release branch](https://github.com/nix-community/home-manager/tree/release-26.05). Module wiring follows the [Home Manager Darwin template](https://github.com/nix-community/home-manager/blob/release-26.05/templates/nix-darwin/flake.nix). Generate and commit `flake.lock`; branch names alone do not freeze revisions. The revisions used for the successful build are recorded above.
 
 `system.stateVersion = 7` selects nix-darwin compatibility defaults for a new 26.05 installation. `home.stateVersion = "26.05"` separately selects Home Manager compatibility defaults. Neither value pins packages. Keep both values fixed across ordinary updates; review migration notes before a change. [nix-darwin version option](https://github.com/nix-darwin/nix-darwin/blob/nix-darwin-26.05/modules/system/version.nix), [Home Manager version option](https://github.com/nix-community/home-manager/blob/release-26.05/modules/misc/version.nix)
 
