@@ -1,16 +1,22 @@
-# nix-darwin migration spike
+# nix-darwin migration
+
+The migration is now implemented on this branch. See [setup instructions](../../README.md). The bootstrap, flake, and plugin sources replace the old installer. Nix owns supported CLI tools; Homebrew retains app casks and three exceptions. The installed Nix version remains under its current owner.
+
+## Historical spike
+
+The research below records the earlier proposal and its temporary proof build. Its statements about missing implementation describe that earlier state.
 
 Research date: 2026-10-21. Repo baseline: `056fbfaad3f92a0d46be02f9ed194f7c1e6bf530`.
 
 Scope: the current Apple Silicon Mac. Linux migration remains separate.
 
-## Result
+### Result
 
 Use nix-darwin for the Mac configuration and Homebrew. Use its Home Manager module for user files. Keep existing config files and Homebrew package ownership during the first migration. Move CLI tools to Nix in later changes, one tool at a time.
 
 This remains a proposed migration. After Nix installation, the example below passed a flake check and a full system build on arm64 macOS 26.7.1. No activation was run. The repo still has no `flake.nix`, `flake.lock`, or `bootstrap.sh`.
 
-## Validation after Nix installation
+### Validation after Nix installation
 
 Verified Nix 2.35.3 and its daemon. The tool shell did not have Nix on PATH; this profile script made it available:
 
@@ -39,7 +45,7 @@ The proposed configuration selects Nix 2.34.9+1; the installed version is 2.35.3
 
 This proves that the small example builds. Homebrew installation, file adoption, plugin behavior, fresh-machine setup, and activation remain untested. No Homebrew command or activation script was run during validation.
 
-## One-command setup target
+### One-command setup target
 
 One command must set up a supported Mac, including Nix and Homebrew prerequisites. Proposed entry point after checkout:
 
@@ -60,7 +66,7 @@ The script must:
 
 Administrator prompts and app sign-ins remain interactive. A second run must use the same entry point without duplicate installs, lost files, or unintended package upgrades. Test both a clean Mac and an existing dotfiles installation before calling one-command setup complete.
 
-## Current scope
+### Current scope
 
 The [installer](https://github.com/thiskevinwang/dotfiles/blob/056fbfaad3f92a0d46be02f9ed194f7c1e6bf530/install.sh) combines package installation, network downloads, file deletion, symlinks, plugin setup, and local Git/GPG edits. Its root glob also links non-config entries such as `Brewfile` and `docs`. New root `nix/` or `home/` directories would become `~/.nix` or `~/.home`. Replace or guard that glob before adding modules.
 
@@ -70,7 +76,7 @@ Existing shell, Git, Vim, tmux, Ghostty, Zed, and agent instructions use checkou
 
 The open draft [PR #3](https://github.com/thiskevinwang/dotfiles/pull/3) contains an older migration at `4a57b3dd7fb90cc86338092b67e5b3c451b69d6e`. It uses 24.11 plus unstable inputs, lacks `flake.lock`, and leaves GUI casks manual. Its shell/tmux conversion omits current behavior. Reuse its file-mapping idea only. Its reported container check was not repeated for this spike.
 
-## Ownership
+### Ownership
 
 | Component | First migration | Later work |
 | --- | --- | --- |
@@ -84,7 +90,7 @@ Home Manager supports nix-darwin integration, activates each configured user dur
 
 Keep one owner per executable and config path. For example, retain Homebrew `gh` and GPG while `gitconfig` names their Homebrew paths. Do not also install Nix copies. Keep raw `.zshrc` ownership separate from `programs.zsh` configuration generation.
 
-### File manifest
+#### File manifest
 
 Use explicit `home.file` targets, relative to `/Users/kevin`. Do not link entire `.codex`, `.claude`, `.config`, or application-support directories.
 
@@ -105,7 +111,7 @@ Use explicit `home.file` targets, relative to `/Users/kevin`. Do not link entire
 
 These mappings come from the [installer](https://github.com/thiskevinwang/dotfiles/blob/056fbfaad3f92a0d46be02f9ed194f7c1e6bf530/install.sh). Preserve source bytes first. The installer creates the Neovim target, but that path was absent on the checked Mac; validate it during adoption.
 
-## Minimal proposed flake
+### Minimal proposed flake
 
 This example shows the proposed integration with tmux and agent instruction files. It is not the complete migration. Place `flake.nix` at the repo root only after the old installer glob is guarded.
 
@@ -166,7 +172,7 @@ The release input names match the [nix-darwin release flake](https://github.com/
 
 `homebrew.extraConfig` appends the current Brewfile without a package-name rewrite. The module requires an existing Homebrew installation. `cleanup = "none"` keeps undeclared packages. `autoUpdate = false` and `upgrade = false` suppress activation updates/upgrades; they do not pin Homebrew package versions or stop separate manual/app updates. Review custom-tap trust with the installed Homebrew version before the first switch. [Homebrew module](https://github.com/nix-darwin/nix-darwin/blob/nix-darwin-26.05/modules/homebrew.nix)
 
-## Adoption and mutable state
+### Adoption and mutable state
 
 1. Record the explicit target manifest, each existing link target, and regular-file contents in a dated backup outside the repo.
 2. Remove only verified checkout symlinks for targets being adopted. Stop on unexpected files or links. Do not use a root glob or blanket `force = true`.
@@ -185,7 +191,7 @@ Never import plaintext secrets through `source`, `readFile`, or Nix option value
 
 When `.zshrc` remains a raw file, add the Home Manager session-variable hook at the appropriate point: `. "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"` for `useUserPackages = true`. Verify PATH order in a new login shell. [Session-variable hook](https://nix-community.github.io/home-manager/installation/nix-darwin.html)
 
-## Work order
+### Work order
 
 | Step | Files / work | Required result |
 | --- | --- | --- |
@@ -202,7 +208,7 @@ Resolve current machine dependencies separately: `tmux`, `rtk`, `git-lfs`, Terra
 
 Preserve tmux Ctrl-Space, theme hooks, `set-titles-string '#T'`, and tmux-powerline paths. Resolve the font mismatch: Ghostty/Zed select IBM Plex Mono; Brewfile declares Fira Code Nerd Font. [tmux config](https://github.com/thiskevinwang/dotfiles/blob/056fbfaad3f92a0d46be02f9ed194f7c1e6bf530/tmux.conf), [Ghostty config](https://github.com/thiskevinwang/dotfiles/blob/056fbfaad3f92a0d46be02f9ed194f7c1e6bf530/ghostty/config), [Zed config](https://github.com/thiskevinwang/dotfiles/blob/056fbfaad3f92a0d46be02f9ed194f7c1e6bf530/zed/settings.json)
 
-## Validation and commands
+### Validation and commands
 
 Proposed commands only. Run after Nix installation and after the actual configuration files exist. `kevin-mac` is an explicit flake output name, not a claim about the current hostname.
 
@@ -235,7 +241,7 @@ Acceptance checks:
 - A second switch causes no unwanted file, package, or preference changes.
 - One setup command completes bootstrap on a disposable Mac/VM before the old installer is removed; the same command can run again safely.
 
-## Rollback limits
+### Rollback limits
 
 List or activate an earlier system generation after at least two successful generations exist:
 
