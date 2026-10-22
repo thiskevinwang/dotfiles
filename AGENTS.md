@@ -18,6 +18,7 @@ be honest an state that.
 
 ## Writing style
 
+- Never use "survives" or related forms ("survive", "survived", "surviving") in explanations. These terms are vague. State the exact behavior or retained state and name the change or event, such as "the value remains stored after restart" or "the check still executes after the refactor".
 - Open with the specific problem, result, or claim.
 - State the scope and required background briefly.
 - Explain concepts in dependency order. Introduce each concept before using it.
