@@ -2,6 +2,7 @@
 " Plugins
 "----------------------------------------------------------------------
 "
+if !get(g:, 'dotfiles_nix_plugins', 0)
 call plug#begin()
 " For vim-colors-github to work, make sure it's at the top of the plugin list
 " Plug 'cormacrelf/vim-colors-github'
@@ -34,6 +35,7 @@ endif
 Plug 'kristijanhusak/vim-simple-notifications'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+endif
 
 " Use Space as the leader key
 let mapleader = " "

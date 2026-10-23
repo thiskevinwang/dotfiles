@@ -1,47 +1,13 @@
-# Taps
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
+# Apps and CLI exceptions; nix/home.nix owns the other CLI tools.
 
 # Font
 cask "font-fira-code-nerd-font"
 
-# Binaries
-brew "awscli"
-brew "bat" # better cat
-brew "bottom" # better top
-brew "certigo"
-brew "cfssl"
-brew "cmake"
+# Homebrew-only tools and the existing database installation. CLI tools are in nix/home.nix.
 brew "dark-mode"
-brew "dog"
-brew "fd" # better file finder for Telescope
-brew "fnm" # Node version manager
-brew "fzf"
-brew "gh" # GitHub CLI
-brew "gnupg"
-brew "go"
-brew "goreleaser"
-brew "jq"
-brew "lsd" # better ls https://github.com/lsd-rs/lsd
-brew "mike-engel/jwt-cli/jwt-cli"
-brew "mas" # Mac App Store CLI
-brew "mercurial" # 'hg', used by Diffview health checks
-brew "neofetch"
-brew "neovim" # 'nvim'
-brew "node"
-brew "nushell" # 'nu'
-brew "pinentry-mac"
-brew "postgresql" # psql
-brew "pure" # https://github.com/sindresorhus/pure
-brew "ripgrep" # 'rg' better grep
-brew "tree"
-brew "uv" # python dependency manager https://docs.astral.sh/uv/getting-started/installation/#pypi
 brew "vercel-cli"
-brew "watch"
-brew "watchman"
-brew "webp"
-brew "yq" # jq, but for YAML
+brew "watchman" # Pinned Nix edencommon tests time out on this Mac.
+brew "postgresql@18" # Existing Homebrew database ownership remains unchanged.
 
 # Apps
 cask "1password"
@@ -59,6 +25,7 @@ cask "slack"
 cask "tableplus"
 cask "tuple" # tuple.app
 cask "visual-studio-code"
+cask "zed"
 cask "zoom"
 
 # Mac App Store
