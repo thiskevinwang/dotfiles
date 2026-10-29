@@ -43,12 +43,25 @@ be honest an state that.
 - Keep the tone direct, calm, and respectful. Use emphasis sparingly.
 - Stop when the reader has the result or next step. Omit repeated conclusions.
 
+## Coding style
 
+When writing Go code, 
+- consult https://go-proverbs.github.io/
+- write [effective go](https://go.dev/doc/effective_go)
+- follow the high-level principles of https://google.github.io/styleguide/go/guide, if they do not conflict with the project you're working in.
 
+When writing JavaScript/TypeScript
+- follow the high-level principles of https://google.github.io/styleguide/tsguide.html, if they do not conflict with the project you're working in.
+
+Consult the styleguides sparingly since they are large.
 
 ### Projects
 
 MOST if not all projects are cloned under ~/repos. So you can always start there if tasked with working on something, but not being in a meaningful directory yet. 
+
+NEVER provide random corny app names like "underway", "launchpad", "deepforest". Ask the user to provide a name asynchronously, and if none is provided, fall back to "<NAME_PLACEHOLDER>" literal.
+
+NEVER mention project internals on user-facing markup/copy. For example, never mention things like "secrets stay in the browser".
 
 ### Git
 
