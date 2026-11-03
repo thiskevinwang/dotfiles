@@ -1,0 +1,190 @@
+{
+  "nodes": {
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792438572,
+        "narHash": "sha256-5mQQOcggBRBXB7NlzUxO0dbvQN4euJOISjNybrtfxPk=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "24f8f8e786f87d6a818e1746cb2389bf922afdab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-26.05",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nix-darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792625244,
+        "narHash": "sha256-BdwzMI6eVtJxFZW5aXgOaMhTiOtDlRsd/gmFb2SpGiA=",
+        "owner": "nix-darwin",
+        "repo": "nix-darwin",
+        "rev": "4459544d8296fa2cca7168de1e54a6691ec48a17",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-darwin",
+        "ref": "nix-darwin-26.05",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1792526774,
+        "narHash": "sha256-+qjpjRPb6ak1rkodfh7wEtgQB3DaAI5tg0kSklSUmio=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "36fd15bbb657815e2028e31d715c2e43a1230c91",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-26.05-darwin",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "oh-my-zsh": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792578674,
+        "narHash": "sha256-Y6S7urrtsdUN7A7lgWF2FkIWZpA1HNkjf1eWwfkjzUQ=",
+        "owner": "ohmyzsh",
+        "repo": "ohmyzsh",
+        "rev": "2100c630ba4bd67bb48802c3e7da893a4fdaa1a0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ohmyzsh",
+        "repo": "ohmyzsh",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "home-manager": "home-manager",
+        "nix-darwin": "nix-darwin",
+        "nixpkgs": "nixpkgs",
+        "oh-my-zsh": "oh-my-zsh",
+        "tmux-powerline": "tmux-powerline",
+        "tpm": "tpm",
+        "vim-jsx": "vim-jsx",
+        "vim-simple-notifications": "vim-simple-notifications",
+        "zsh-autosuggestions": "zsh-autosuggestions",
+        "zsh-completions": "zsh-completions"
+      }
+    },
+    "tmux-powerline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791484692,
+        "narHash": "sha256-gdJ/cZfCByLlf5qnjcODuITZMCUtSFxXMo4tvoeuBto=",
+        "owner": "erikw",
+        "repo": "tmux-powerline",
+        "rev": "67e21efaeb560443c741e240b74ce7f3995c765d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "erikw",
+        "repo": "tmux-powerline",
+        "type": "github"
+      }
+    },
+    "tpm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1779036064,
+        "narHash": "sha256-oRKUZNyJYQXlkeQfbEYiltUEBpvdwn2SoEBWHVUNmrA=",
+        "owner": "tmux-plugins",
+        "repo": "tpm",
+        "rev": "e261deb1b47614eed3400089ce7197dc68acc4eb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tmux-plugins",
+        "repo": "tpm",
+        "type": "github"
+      }
+    },
+    "vim-jsx": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1569784850,
+        "narHash": "sha256-jT1WSAbRJsqF08Nr6LTEX2Vmi8UUtT4rX4fLeTyN8jM=",
+        "owner": "mxw",
+        "repo": "vim-jsx",
+        "rev": "8879e0d9c5ba0e04ecbede1c89f63b7a0efa24af",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mxw",
+        "repo": "vim-jsx",
+        "type": "github"
+      }
+    },
+    "vim-simple-notifications": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1620825591,
+        "narHash": "sha256-mj1GSR0fSqX/Zt4rQkkYhqjVGG8fe029pJ54xRfYQno=",
+        "owner": "kristijanhusak",
+        "repo": "vim-simple-notifications",
+        "rev": "2a5cd7ffecdfbbef42e64e2f2df0eabbacbaa66e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kristijanhusak",
+        "repo": "vim-simple-notifications",
+        "type": "github"
+      }
+    },
+    "zsh-autosuggestions": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1750781703,
+        "narHash": "sha256-KmkXgK1J6iAyb1FtF/gOa0adUnh1pgFsgQOUnNngBaE=",
+        "owner": "zsh-users",
+        "repo": "zsh-autosuggestions",
+        "rev": "85919cd1ffa7d2d5412f6d3fe437ebdbeeec4fc5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zsh-users",
+        "repo": "zsh-autosuggestions",
+        "type": "github"
+      }
+    },
+    "zsh-completions": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792130223,
+        "narHash": "sha256-H25tD8EAj7PRjGaUh8DDtMdSTRTAtzu4VS5Ka0ApCp0=",
+        "owner": "zsh-users",
+        "repo": "zsh-completions",
+        "rev": "989b23277ab33e8d5e82df6aed936e846db9d8b8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zsh-users",
+        "repo": "zsh-completions",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

@@ -2,19 +2,33 @@
 # current directory being readable. `brew shellenv` performs that check.
 if [[ -x /opt/homebrew/bin/brew ]]; then
   eval "$(cd "$HOME" && /opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(cd "$HOME" && /usr/local/bin/brew shellenv)"
+fi
+
+# Keep the externally installed Nix available after nix-darwin takes over zsh.
+if ! (( $+commands[nix] )) && [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
+  source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+fi
+
+# Prefer the CLI tools selected by the locked Home Manager configuration.
+export PATH="$HOME/.local/bin:$PATH"
+if [[ -d "/etc/profiles/per-user/$USER/bin" ]]; then
+  export PATH="/etc/profiles/per-user/$USER/bin:$PATH"
+  fpath=("/etc/profiles/per-user/$USER/share/zsh/site-functions" $fpath)
 fi
 
 # Check for ARM or Intel arch
 [[ $(uname -m) == "arm64" ]] && export IS_ARM=true || export IS_ARM=false
 
 # Setup TTY for GPG
-export GPG_TTY=$(tty)
+[[ -t 0 ]] && export GPG_TTY=$(tty)
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/kevin/.oh-my-zsh"
+export ZSH="${ZSH:-$HOME/.oh-my-zsh}"
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
@@ -42,16 +56,17 @@ if (( $+commands[op] )); then
 fi
 
 # go-bindata
-export PATH=$PATH:$(go env GOPATH)/bin
-# GOPATH
-export GOPATH=$(go env GOPATH)
+if (( $+commands[go] )); then
+  export GOPATH=$(go env GOPATH)
+  export PATH="$PATH:$GOPATH/bin"
+fi
 
 export AWS_PAGER=""
 
 
 # Note this needs to come after plugins=(...)
 # in order for plugins to load.
-source $ZSH/oh-my-zsh.sh
+[[ -f "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"
 
 # Pure prompt
 autoload -U promptinit; promptinit
@@ -85,23 +100,27 @@ alias tf=terraform
 # TAB COMPLETIONS
 
 ## Terraform
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
+if (( $+commands[terraform] )); then
+  complete -o nospace -C "${commands[terraform]}" terraform
+fi
 ## Nomad
-complete -o nospace -C /opt/homebrew/bin/nomad nomad
+if (( $+commands[nomad] )); then
+  complete -o nospace -C "${commands[nomad]}" nomad
+fi
 
 # fnm
-eval "$(fnm env --use-on-cd --shell zsh)"
+(( $+commands[fnm] )) && eval "$(fnm env --use-on-cd --shell zsh)"
 
 # Python
 # alias python=/usr/local/bin/python3
-alias python=/opt/homebrew/bin/python3
-alias pip=/opt/homebrew/bin/pip3
+alias python=python3
+alias pip='python3 -m pip'
 
 # Ruby
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # By default, binaries installed by gem will be placed into:
 #   /opt/homebrew/lib/ruby/gems/3.1.0/bin
-export PATH="/opt/homebrew/lib/ruby/gems/3.1.0/bin:$PATH"
+export PATH="${HOMEBREW_PREFIX:-/opt/homebrew}/lib/ruby/gems/3.1.0/bin:$PATH"
 #
 # You may want to add this to your PATH.
 #
@@ -110,7 +129,7 @@ export PATH="/opt/homebrew/lib/ruby/gems/3.1.0/bin:$PATH"
 # parallel can cause all kinds of trouble.
 #
 # If you need to have ruby first in your PATH, run:
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="${HOMEBREW_PREFIX:-/opt/homebrew}/opt/ruby/bin:$PATH"
 #
 # For compilers to find ruby you may need to set:
 #   export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
@@ -121,10 +140,10 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 
 # Android
-export ANDROID_SDK=/Users/kevin/Library/Android/sdk
+export ANDROID_SDK="$HOME/Library/Android/sdk"
 
 # bun completions
-[ -s "/Users/kevin/.bun/_bun" ] && source "/Users/kevin/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -132,8 +151,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # For cURL w/ HTTP3 support
 # https://gist.github.com/xmlking/cff9510dac9281d29390392cbbb033a8
-export PATH="/opt/homebrew/opt/curl/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+export PATH="${HOMEBREW_PREFIX:-/opt/homebrew}/opt/curl/bin:$PATH"
+export PATH="${HOMEBREW_PREFIX:-/opt/homebrew}/opt/openjdk@17/bin:$PATH"
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
@@ -141,13 +160,15 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # https://github.com/tobi/try
-eval "$(ruby ~/.local/try.rb init ~/src/tries)"
+if [[ -f "$HOME/.local/try.rb" ]] && (( $+commands[ruby] )); then
+  eval "$(ruby "$HOME/.local/try.rb" init "$HOME/src/tries")"
+fi
 
 # GPG TTY setup
-export GPG_TTY=$(tty)
+[[ -t 0 ]] && export GPG_TTY=$(tty)
 
 # Added by Antigravity
-export PATH="/Users/kevin/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
 # https://medium.com/@GroundControl/better-git-diffs-with-fzf-89083739a9cb
 fd() {
@@ -160,4 +181,4 @@ cexec() {
 	codex --model=gpt-5.4 --yolo exec "$*";
 }
 
-eval "$(codex completion zsh)"
+(( $+commands[codex] )) && eval "$(codex completion zsh)"
