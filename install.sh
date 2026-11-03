@@ -5,6 +5,10 @@
 #
 # This script builds on top of https://github.com/mitchellh/dotfiles
 
+if [[ $(uname -s) == Linux ]]; then
+  exec bash "$(dirname -- "${BASH_SOURCE[0]}")/install-linux.sh" "$@"
+fi
+
 echo ""
 
 # Install Homebrew
@@ -79,7 +83,7 @@ UNAME=$(uname | tr '[:upper:]' '[:lower:]')
 for path in $SCRIPT_DIR/*; do
   name=$(basename $path)
   case $name in
-    *.md|*.sh|nushell|zed) continue;;
+    *.md|*.sh|*.linux|tests|nushell|zed) continue;;
   esac
 
   # If there exists a platform-specific version, then use that
