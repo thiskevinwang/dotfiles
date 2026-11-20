@@ -1,0 +1,48 @@
+# Linux shell config. Keep optional tools from blocking shell startup.
+typeset -U path fpath
+path=("$HOME/.local/bin" "$HOME/.bun/bin" "${XDG_DATA_HOME:-$HOME/.local/share}/fnm" $path)
+export PATH
+export ZSH="${ZSH:-$HOME/.oh-my-zsh}"
+export AWS_PAGER=""
+[[ -t 0 ]] && export GPG_TTY=$(tty)
+
+plugins=(git)
+(( $+commands[fzf] )) && plugins+=(fzf)
+[[ -d ${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-autosuggestions ]] && plugins+=(zsh-autosuggestions)
+fpath+=("${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-completions/src" "${ZSH_CUSTOM:-$ZSH/custom}/pure")
+if [[ -f $ZSH/oh-my-zsh.sh ]]; then
+  source "$ZSH/oh-my-zsh.sh"
+else
+  autoload -Uz compinit
+  compinit
+  PROMPT='%n@%m %~ %# '
+fi
+if [[ -f ${ZSH_CUSTOM:-$ZSH/custom}/pure/pure.zsh ]]; then
+  autoload -Uz promptinit
+  promptinit
+  prompt pure
+fi
+
+if (( $+commands[go] )); then
+  export GOPATH=$(go env GOPATH)
+  path+=("$GOPATH/bin")
+fi
+(( $+commands[fnm] )) && eval "$(fnm env --use-on-cd --shell zsh)"
+(( $+commands[codex] )) && eval "$(codex completion zsh)"
+(( $+commands[op] )) && eval "$(op completion zsh)"
+(( $+commands[rbenv] )) && eval "$(rbenv init - zsh)"
+(( $+commands[python3] )) && alias python=python3
+(( $+commands[pip3] )) && alias pip=pip3
+[[ -r $HOME/.fzf.zsh ]] && source "$HOME/.fzf.zsh"
+[[ -r $HOME/.bun/_bun ]] && source "$HOME/.bun/_bun"
+unsetopt LIST_BEEP
+alias tf=terraform
+if (( $+commands[terraform] || $+commands[nomad] )); then
+  autoload -Uz bashcompinit
+  bashcompinit
+  (( $+commands[terraform] )) && complete -o nospace -C "${commands[terraform]}" terraform
+  (( $+commands[nomad] )) && complete -o nospace -C "${commands[nomad]}" nomad
+fi
+
+# Local settings and secrets stay outside this repo.
+[[ -r ${ZDOTDIR:-$HOME}/.zshrc.local ]] && source "${ZDOTDIR:-$HOME}/.zshrc.local"
