@@ -161,3 +161,11 @@ cexec() {
 }
 
 eval "$(codex completion zsh)"
+eval "$(zoxide init zsh)"
+
+# Added by the Hunk installer (https://hunk.dev)
+export PATH='/Users/kevin/.hunk/bin':"$PATH"
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/kevin/.local/bin:$PATH"
