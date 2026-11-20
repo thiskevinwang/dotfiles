@@ -14,7 +14,7 @@ export GPG_TTY=$(tty)
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/kevin/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
@@ -51,7 +51,7 @@ export AWS_PAGER=""
 
 # Note this needs to come after plugins=(...)
 # in order for plugins to load.
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 # Pure prompt
 autoload -U promptinit; promptinit
